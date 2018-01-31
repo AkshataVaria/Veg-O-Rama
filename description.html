@@ -31,6 +31,21 @@
                 productType = 'Bowls';
                 imgSrc = "images/bowl.jpg"
                 break;
+
+            case 'Subs': response = displaySubs();
+                     productType = 'Subs';
+                     imgSrc = "images/sub.jpg"
+                     break;
+               
+            case 'wraps': response = displayWraps();
+                productType = 'Wraps';
+                imgSrc = "images/fries.jpg"
+                break;
+
+            case 'Breakfast': response = displayBreakfastItems();
+                productType = 'Breakfast';
+                imgSrc = "images/breakfast3.jpg"
+                break;
         }
        
         for (var prop in response) {
@@ -53,11 +68,11 @@
             const productName = code + "." + response[prop].productName;
             var divProductName = document.createElement("a");
             var textnode = document.createTextNode(productName)
-            divProductName.href = "javascript:openPopUp('"+code+"')" /*Please check this Namita,tried sending code param,but doesnt work */
+            divProductName.href = "javascript:openPopUp('"+code+"')" 
             divProductName.appendChild(textnode);
 
             const productDescription = response[prop].description;
-            var divProductDesc = document.createElement("div");
+            var divProductDesc = document.createElement("span");
             var textDesc = document.createTextNode(productDescription)
             divProductDesc.appendChild(textDesc);
             divProductDesc.style.background = "none";
@@ -67,7 +82,7 @@
             divProductName.style.className = "fontDescription";
             
             const btnPlus = '+';
-            var divPlus = document.createElement("div");
+            var divPlus = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
             var txtPlus = document.createTextNode(btnPlus);
             divPlus.appendChild(txtPlus);
             divPlus.style.background = "none";
@@ -77,7 +92,7 @@
 
 
             const price = "$" + response[prop].price;
-            var divPrice = document.createElement("div");
+            var divPrice = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
             var textnodePrice = document.createTextNode(price)
             divPrice.appendChild(textnodePrice);
             divPrice.style.background = "none";
@@ -86,7 +101,7 @@
              
 
             const btnName = '-';
-            var divMinus = document.createElement("div");
+            var divMinus = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
             var txt = document.createTextNode(btnName);
             divMinus.appendChild(txt);
             divMinus.style.background = "none";
@@ -94,13 +109,14 @@
 
             newRow.appendChild(divPlus);
             divPlus.className = "fontBold";
+
             divPlus.onclick = function () {
-                addToCart(response[prop].code);
+                addToCart('"+code+"');
                 location.reload();
             };
 
                 divMinus.onclick = function () {
-                decreaseQuantity(response[prop].code);
+                decreaseQuantity('"+code+"');
                 location.reload();
 
             };
@@ -120,6 +136,7 @@
                 const newRow = document.getElementById('cartTable').appendChild(document.createElement('tr'));
                 const rowId = 'cartRow' + rowNumber;
                 newRow.setAttribute('id', rowId);
+                
 
                 var code = item.code;
                 const productName = code + "." + item.productName;
@@ -128,17 +145,18 @@
                 divProductName.appendChild(textnode);
                 newRow.appendChild(divProductName)
 
-                const btnName = '-';
-                var divMinus = document.createElement("button");
-                var txt = document.createTextNode(btnName);
-                divMinus.appendChild(txt);
-                newRow.appendChild(divMinus)
+                var btnMinus = document.createElement("img");
+                btnMinus.src = "images/minus.png";
+                btnMinus.style.width = "20px"
+                btnMinus.style.height = "30px";
+                newRow.appendChild(btnMinus);
 
-                divMinus.onclick = function () {
+                btnMinus.onclick = function () {
                     decreaseQuantity(item.code)
                     location.reload();
 
                 };
+                              
 
                 const quantity = item.qty;
                 var divQty = document.createElement("div");
@@ -147,66 +165,70 @@
                 newRow.appendChild(divQty)
 
 
-                const btnPlus = '+';
-                var divPlus = document.createElement("button");
-                var txtPlus = document.createTextNode(btnPlus);
-                divPlus.appendChild(txtPlus);
+            
+                var btnPlus = document.createElement("img");
+                btnPlus.src = "images/plus.png";
+                btnPlus.style.width = "15px"
+                btnPlus.style.height = "23px";
+                newRow.appendChild(btnPlus);
 
-                const colId = 'cartRow' + Math.random();
-                divPlus.setAttribute('id', colId);
-                newRow.appendChild(divPlus)
-
-                divPlus.onclick = function () {
+                btnPlus.onclick = function () {
                     addToCart(item.code)
                     location.reload();
+
                 };
+
 
                 const price = item.price;
                 var divPrice = document.createElement("div");
                 var textnodePrice = document.createTextNode(price)
                 divPrice.appendChild(textnodePrice);
-                newRow.appendChild(divPrice)
+                newRow.appendChild(divPrice)              
+               
 
-
-                const btnCancel = 'x';
-                var divCancel = document.createElement("button");
-                var txtCancel = document.createTextNode(btnCancel);
-                divCancel.appendChild(txtCancel);
-                newRow.appendChild(divCancel);
-                divCancel.onclick = function () {
+                var btnCancel = document.createElement("img");
+                btnCancel.src = "images/DeleteImg.png";
+                btnCancel.style.width = "18px"
+                btnCancel.style.height = "20px";
+                newRow.appendChild(btnCancel);
+                btnCancel.onclick = function () {
 
                     var rowId = newRow.id;
                     deleteCartItem(rowId, item.code)
                     location.reload();
 
 
-                };
+                }
+
+                btnCancel.style.borderRadius = "8px";
+                btnCancel.style.backgroundColor = "red";
 
             })
 
-            const totalprice = result.totalPrice;
+            const totalprice = "$" + result.totalPrice;
             var divTotalPrice = document.createElement("div");
             var textnodeTotalPrice = document.createTextNode(totalprice)
             divTotalPrice.appendChild(textnodeTotalPrice);
             document.getElementById('dvTotalPrice').appendChild(divTotalPrice);
 
-            const salestax = result.salesTax;
+            const salestax = "$" + result.salesTax;
             var divSalesTax = document.createElement("div");
             var textnodeSalesTax = document.createTextNode(salestax)
             dvSalesTax.appendChild(textnodeSalesTax);
             document.getElementById('dvSalesTax').appendChild(divSalesTax);
 
 
-            const finalTotalprice = result.finalTotal;
+            const finalTotalprice = "$" + result.finalTotal;
             var divFinalTotalPrice = document.createElement("div");
             var textnodeTotalPrice = document.createTextNode(finalTotalprice)
             divFinalTotalPrice.appendChild(textnodeTotalPrice);
             document.getElementById('dvFinalTotalPrice').appendChild(divFinalTotalPrice);
+            divFinalTotalPrice.className="fontBold"
             document.getElementById('dvQuantity').innerHTML = "(" + result.totalQuantity + ")";
         }
         else {
 
-            document.getElementById('dvShowNoitems').innerHTML = "There are currently no items in the cart!!";
+            document.getElementById('dvShowNoitems').innerHTML = "Your bag is empty!";
             document.getElementById('dvQuantity').innerHTML = " ";
         }
 
@@ -235,7 +257,7 @@
                         <a href="contact.html">Contact</a>
                     </li>
                     <li>
-                        <a href="viewDetails.html"><img src="images/cart.png" width="30" height="35" /></a>
+                        <a href="description.html"><img src="images/shoppingBag1.png" width="23" height="35" /></a>
                     </li>
                     <li class="quantity">
                         <div id="dvQuantity"></div>  <!--Div to show the quantity of items in the cart,beside the cart image-->
@@ -247,23 +269,23 @@
     <div id="body" style="background-color:white !important">
 
         <div class="content" style="background:none !important">
-            <table id ="tblDescription" class ="tblDesc" sstyle="border-style:solid;border-color:gray;">
+            <table id ="tblDescription" class ="tblDesc" style="border-style:solid;border-color:gray;">
                 <tr>
                     <th class="headerColor" id="tblHeader"></th>
                 </tr>
-                <tr>
-                    <td style="width:30%"></td>
-                    <td style="width:40%"></td>
-                    <td style="width:30%"></td>
-                </tr>
+            
             </table>
         </div>
         <div class="sidebar">
-            <h1>Veg-O-Rama</h1>
+           
             <div id="dvMain" class="displayMain" style="width:100%">
                 <table id="cartTable" class="cart" style="width:100%;">
-                    <!--*Display description in first row *-->
                     <tr>
+                        <td> <h1>Veg-O-Rama</h1></td>
+                        <td colspan="5"></td>
+                    </tr>
+                    <!--*Display description in first row *-->
+                    <tr id="tblCartDesc">
                         <td style="width:50%">
                             Item
                         </td>
@@ -277,9 +299,12 @@
                         </td>
                         <td style="width:5%"></td>
                     </tr>
+                    <tr>
+                        <td colspan="5" id="dvShowNoitems" class="txtNoItem"></td>
+                    </tr>
 
                 </table>
-                <table id="cartPricing" style="width:100%">
+                <table id="cartPricing" style="width:100%;background-color: lightgray;">
                     <tr>
                         <td style="width:80%">Total Price</td>
                         <td style="width:20%"><div id="dvTotalPrice" style="text-align:right"></div></td>
@@ -299,11 +324,10 @@
             </div>
 
             <div id="dvProceedBtn" style="margin-right:3px;margin-top:10px">
-                <button onclick="navigate()">Proceed to check out </button>
-                <button>Cancel </button>
+                <button onclick="navigate()" id="btnProceed">Proceed to check out </button>
+                <button id="btnCancel">Cancel </button>
             </div>
-            <!--This div is when there are no items in the cart-->
-            <div id="dvShowNoitems"></div>
+            
 
         </div>
     </div>

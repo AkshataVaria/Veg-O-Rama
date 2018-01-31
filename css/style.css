@@ -415,6 +415,7 @@ img {
 	margin :0;
 	padding :0;
 }
+
 #body .sidebar {
 	width :280px;
 	float :left;
@@ -917,9 +918,13 @@ ul#navigation {
  border-style:solid;
 
 }
-.txtAlign{
-    text-align:left;
-
+.txtNoItem {
+    text-align:center;
+    font-weight:bold;
+    font-style:italic;
+}
+.txtAlign {
+    text-align: left;
 }
 .txtRightAlign{
     text-align:right;
@@ -929,21 +934,25 @@ ul#navigation {
     flex-direction: row;
     width: auto;
 }*/
+.cart
+{
+    text-align:left !important;
+}
+.cart #tblCartDesc
+{
+    background-color: lightgray;
+}
 
 .cart tr {
     display: flex;
-    flex-direction: row;  
+    flex-direction: row;
     border-bottom: dotted 1px;
-    border-bottom-color:gray;
-    
-}
-.cart td{
-    text-align:left !important;
-}
-.cartPricing td{
- text-align:left !important;
+    border-bottom-color: gray;
 }
 
+#cartPricing td {
+    text-align: left !important;
+}
 
 .navbar a {
   float: left;
@@ -999,11 +1008,10 @@ ul#navigation {
 
 .tblDesc tr {
     display: flex;
-    flex-direction: row;
-    /*flex-flow: row wrap;*/
-    flex-wrap:wrap;
+    flex-direction: row;   
     border-bottom: dotted 1px;
     border-bottom-color: gray;
+
 }
 
 .tblDesc td {
@@ -1012,8 +1020,18 @@ ul#navigation {
 }
 
 /* textaarea align*/
-textarea
-{
-vertical-align: top;
+textarea {
+    vertical-align: top;
 }
+
+#btnProceed {
+    background-color: #4CAF50;
+    font-size: 14px;
+}
+
+#btnCancel {
+    background-color: #4CAF50;
+    font-size: 14px;
+}
+
 

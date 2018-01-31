@@ -46,50 +46,58 @@ var menuCard = {
         'productName': 'Butter Paneer',
         'productType': 'Wraps',
         'price': '5.50',
-        'description':''
+        'description': 'Wrap',
+        'code': 'W1'
     },
     'W2' : {
     	'productName': 'Spicy Manchurian',
         'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W2'
     },
     'W3' : {
     	'productName': 'Grilled Fajitas',
         'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W3'
     },
     'W4' : {
     	'productName': 'Falafel',
     	'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W4'
     },
     'W5' : {
     	'productName': 'Orange Chicken',
         'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W5'
     },
     'W6' : {
     	'productName': 'Butter Chicken',
         'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W6'
 
     },
-    'W6' : {
+    'W7' : {
     	'productName': 'Butter Chicken',
         'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W7'
     },
-    'W7' : {
+    'W8' : {
     	'productName': 'Philly Chicken',
     	'productType' : 'Wraps',
         'price': '5.50',
-        'description': ''
+        'description': 'Wrap',
+        'code': 'W8'
     }, 
     'S1' : {
   		'productName': 'Classic Italian Veg-O-Rama Sub',
@@ -110,26 +118,30 @@ var menuCard = {
   		'productName': 'Paneer',
   		'productType' : 'Breakfast',
             'price': '5',
-            'description': ''
+            'description': 'Breakfast',
+            'code': 'BR1'
  	},
 	'BR2' : {
 		'productName': 'Amazng indian Tomato \'Omelette\'',
  		'productType' : 'Breakfast',
         'price': '5',
-        'description': ''
+        'description': 'Breakfast',
+        'code': 'BR2'
  	},
 
  	'BR3' : {
   		'productName': 'Cheesy Hashbrowns and Toast',
   		'productType' : 'Breakfast',
             'price': '5',
-            'description': ''
+            'description': 'Breakfast',
+            'code': 'BR3'
  	},
  	'BR4' : {
   		'productName': 'Chutney Sandwich',
   		'productType' : 'Breakfast',
             'price': '5',
-            'description': ''
+            'description': 'Breakfast',
+            'code': 'BR4'
  	}
 
 	
@@ -167,7 +179,15 @@ function displayBurgers() {
         burgerArray.push(b5);
         return burgerArray;
 }
+function displaySubs() {
+    var subArray = [];
+    var sub1 = menuCard.S1;
+    subArray.push(sub1);
+    var sub2 = menuCard.S2;
+    subArray.push(sub2);
+    return subArray;
 
+}
 function displayBowls() {
     var bowlArray = [];
     var s1 = menuCard.S1;
@@ -176,6 +196,39 @@ function displayBowls() {
     bowlArray.push(s2);
     return bowlArray;
 
+}
+function displayWraps() {
+    var wrapArray = [];
+    var wrap1 = menuCard.W1;
+    wrapArray.push(wrap1);
+    var wrap2 = menuCard.W2;
+    wrapArray.push(wrap2);
+    var wrap3 = menuCard.W3;
+    wrapArray.push(wrap3);
+    var wrap4 = menuCard.W4;
+    wrapArray.push(wrap4);
+    var wrap5 = menuCard.W5;
+    wrapArray.push(wrap5);
+    var wrap6 = menuCard.W6;
+    wrapArray.push(wrap6);
+    var wrap7 = menuCard.W7;
+    wrapArray.push(wrap7);
+    var wrap8 = menuCard.W8;
+    wrapArray.push(wrap8);
+    return wrapArray;
+}
+function displayBreakfastItems()
+{
+    var bfArray = [];
+    var bfItem1 = menuCard.BR1;
+    bfArray.push(bfItem1);
+    var bfItem2 = menuCard.BR2; 
+    bfArray.push(bfItem2);
+    var bfItem3 = menuCard.BR3;
+    bfArray.push(bfItem3);
+    var bfItem4 = menuCard.BR4;
+    bfArray.push(bfItem4);
+    return bfArray;
 }
 function addToCart(code){	    
 	if(menuCard[code]){
