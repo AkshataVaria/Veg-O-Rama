@@ -4,37 +4,43 @@ var menuCard = {
         'productName': 'Peanut Crusted Cajun BlackBean Burger',
         'productType': 'Burger',
         'price': '2.50',
-        'description': 'Hand Made patty seared on the grill with black beans, spanish peanuts, rice flour for crunch & our house cajun spice blend.'
+        'description': 'Hand Made patty seared on the grill with black beans, spanish peanuts, rice flour for crunch & our house cajun spice blend.',
+        'code':'B1'
     },
     'B2': {
         'productName': 'Mean Green Protein Pea Burger',
         'productType': 'Burger',
         'price': '2.50',
-        'description': 'Hand made patty seared on the grill and packed with protein from loads of green peas dusted with a savory spice blend'
+        'description': 'Hand made patty seared on the grill and packed with protein from loads of green peas dusted with a savory spice blend',
+        'code': 'B2'
     },
     'B3': {
         'productName': 'Golden Crunchy Potato Burger',
         'productType': 'Burger',
         'price': '2.00',
-        'description': 'A classic from the streets of India.. potatoes, a protein flour blend and secret spices make up this craveable, crunchy street food delight.'
+        'description': 'A classic from the streets of India.. potatoes, a protein flour blend and secret spices make up this craveable, crunchy street food delight.',
+        'code': 'B3'
     },
     'B4': {
         'productName': 'The Love Seed Beet them All Burger',
         'productType': 'Burger',
         'price': '2.00',
-        'description': 'Fresh shredded beets, roasted sunflower seeds, flax seed, buck wheat, chickpea flour and just the right spice'
+        'description': 'Fresh shredded beets, roasted sunflower seeds, flax seed, buck wheat, chickpea flour and just the right spice',
+        'code': 'B4'
     },
     'B5': {
         'productName': 'Golden Crunchy Bird\'s Nest Burger',
         'productType': 'Burger',
         'price': '2.50',
-        'description': 'A sell out every rock show we ever set up at.. think coleslaw deepfried in a healthy chickpea flour base with cajun spice.'
+        'description': 'A sell out every rock show we ever set up at.. think coleslaw deepfried in a healthy chickpea flour base with cajun spice.',
+        'code': 'B5'
     },
     'B6': {
         'productName': 'Tamarind BBQ Jackfruit Sandwich',
         'productType': 'Burger',
         'price': '2.50',
-        'description': 'Never had jackfruit'
+        'description': 'Never had jackfruit',
+        'code': 'B6'
     },
     'W1': {
         'productName': 'Butter Paneer',
@@ -89,13 +95,15 @@ var menuCard = {
   		'productName': 'Classic Italian Veg-O-Rama Sub',
   		'productType' : 'Subs',
         'price': '5',
-        'description': ''
+        'description': 'Lots of cheese, banana peppers, tomatoes and our house vinagrette toasted on a hoagie',
+        'code':'S1'
  	},
  	'S2' : {
   		'productName': 'Vegetarian \'Meat Ball\' Masterpiece',
   		'productType' : 'Subs',
             'price': '5',
-            'description': ''
+            'description': '4 Crispy Golden \'Meat Balls\' slathered in BBQ sauce & Swiss Cheese toasted on a hoagie',
+            'code':'S2'
  	},
 
  	'BR1' : {
@@ -107,8 +115,8 @@ var menuCard = {
 	'BR2' : {
 		'productName': 'Amazng indian Tomato \'Omelette\'',
  		'productType' : 'Breakfast',
-            'price': '5',
-            'description': ''
+        'price': '5',
+        'description': ''
  	},
 
  	'BR3' : {
@@ -145,7 +153,30 @@ var cart = {
     finalTotal: 0.0,
     totalQuantity: 0.0
 }
+function displayBurgers() {  
+        var burgerArray = [];
+        var b1 = menuCard.B1;     
+        burgerArray.push(b1);
+        var b2 = menuCard.B2;
+        burgerArray.push(b2);
+        var b3 = menuCard.B3;
+        burgerArray.push(b3);
+        var b4 = menuCard.B4;
+        burgerArray.push(b4);
+        var b5 = menuCard.B5;
+        burgerArray.push(b5);
+        return burgerArray;
+}
 
+function displayBowls() {
+    var bowlArray = [];
+    var s1 = menuCard.S1;
+    bowlArray.push(s1);
+    var s2 = menuCard.S2;
+    bowlArray.push(s2);
+    return bowlArray;
+
+}
 function addToCart(code){	    
 	if(menuCard[code]){
 		var cartLine = new Object();
@@ -188,8 +219,8 @@ function addToCart(code){
 		} else {
 			// error browser not supported
 		}
-    } 
-    alert("added");
+    }
+   
 }
 
 
@@ -283,10 +314,45 @@ function openPopUp(code) {
 	if(menuCard[code]){
 		document.getElementById('modalItemName').innerHTML  = menuCard[code].productName;
 		document.getElementById('modalItemDesc').innerHTML  = menuCard[code].description;
+		document.getElementById('modalItemPrice').innerHTML = '$' + menuCard[code].price;
+		document.getElementById('modalItemCode').innerHTML = code;
 	}
 }
 
 function hideModal(){
 	var modal = document.getElementById('myModal');
 	 modal.style.display = "none";
+}
+
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('modalItemQty').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('modalItemQty').value = value;
+}
+function decrementValue()
+{
+    var value = parseInt(document.getElementById('modalItemQty').value, 10);
+    value = isNaN(value) ? 0 : value;
+	if(value!=1){
+		value--;
+	}
+    document.getElementById('modalItemQty').value = value;
+}
+
+function addExtraCharges(element){
+	if(element.checked) {
+		var currentPrice = document.getElementById('modalItemPrice').innerHTML ;
+		var res = currentPrice.replace("$", "");
+		currentPrice = Number(res);
+		currentPrice = (currentPrice + 1).toFixed(2) ;
+		document.getElementById('modalItemPrice').innerHTML  = '$'+currentPrice;
+	} else {
+		var currentPrice = document.getElementById('modalItemPrice').innerHTML ;
+		var res = currentPrice.replace("$", "");
+		currentPrice = Number(res);
+		currentPrice =(currentPrice - 1).toFixed(2) ;
+		document.getElementById('modalItemPrice').innerHTML  = '$'+currentPrice;
+	}
 }

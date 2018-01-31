@@ -301,6 +301,7 @@ img {
 	background-repeat :no-repeat;
 	float :left;
 }
+
 #body .content div {
 	width :620px;
 	background :transparent url("../images/bg-content-bottom2.png");
@@ -903,9 +904,13 @@ ul#navigation {
     background-color:red;
     font-weight:200;
     color:white;
+    width:630px;
 }
 .fontBold{
-    font-weight:bold;
+    font-weight:bold; 
+}
+.fontDescription{
+    word-wrap:break-word;
 }
 .displayMain {   
  border-color:dimgrey;
@@ -982,9 +987,33 @@ ul#navigation {
     font-weight: bold;
 }
 
+
 .close:hover,
 .close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
+
+/*New code*/
+
+.tblDesc tr {
+    display: flex;
+    flex-direction: row;
+    /*flex-flow: row wrap;*/
+    flex-wrap:wrap;
+    border-bottom: dotted 1px;
+    border-bottom-color: gray;
+}
+
+.tblDesc td {
+
+    text-align: left !important;
+}
+
+/* textaarea align*/
+textarea
+{
+vertical-align: top;
+}
+
