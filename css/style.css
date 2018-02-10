@@ -264,7 +264,7 @@ img {
 	font-weight :normal;
 }
 #body .content div div form label input {
-	background :transparent url("../images/interface.png") no-repeat 0 -77px;
+	/* background :transparent url("../images/interface.png") no-repeat 0 -77px; */
 	width :286px;
 	height :20px;
 	border :0;
@@ -272,7 +272,7 @@ img {
 	margin-bottom :10px;
 }
 #body .content div div form label textarea {
-	background :transparent url("../images/interface.png") no-repeat 0 -157px;
+	/* background :transparent url("../images/interface.png") no-repeat 0 -157px; */
 	width :522px;
 	height :206px;
 	border :0;
@@ -902,10 +902,11 @@ ul#navigation {
     margin-top: -30px;
 }
 .headerColor{
-    background-color:red;
+    background-color:#b70e0e;
     font-weight:200;
     color:white;
-    width:630px;
+	width:630px;
+	text-align: left;
 }
 .fontBold{
     font-weight:bold; 
@@ -947,7 +948,8 @@ ul#navigation {
     display: flex;
     flex-direction: row;
     border-bottom: dotted 1px;
-    border-bottom-color: gray;
+	border-bottom-color: gray;
+	
 }
 
 #cartPricing td {
@@ -970,24 +972,62 @@ ul#navigation {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
-    left: 0;
+    left:0;
     top: 0;
-    width: 100%; /* Full width */
+    width: 100%;    
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /*background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);*/
 }
 
 /* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%;
+    height: 70%;
+    left: 0;
+    top: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+#tblPopUp{
+	width:60%;
+	border-right: dotted 1px;
+	border-right-color: gray;
+	border-bottom: dotted 1px;
+    border-bottom-color: gray;
+}
+#tblPopUp tr{	
+	border-bottom: dotted 1px;
+    border-bottom-color: gray;
+
+}
+#modalItemQty{
+	width:30px;
+}
+#trPopupHeader {
+    background-color: green;
+    color: white;
+    display: row;
+    flex: grow;
+}
+#tblImg {
+    float: right;
+    margin-top: -50%;
 }
 
+
+   
+#btnAddToBag{
+	background-color:green;
+	color: white;
+	margin-top: 105px;
+	height:40px;  
+    width:900px;
+}
 /* The Close Button */
 .close {
     color: #aaaaaa;
@@ -996,7 +1036,11 @@ ul#navigation {
     font-weight: bold;
 }
 
+.borderBottom{
 
+	border-bottom:  5px solid red;
+
+}
 .close:hover,
 .close:focus {
     color: #000;
@@ -1033,5 +1077,10 @@ textarea {
     background-color: #4CAF50;
     font-size: 14px;
 }
+a:hover { 
+    background-color: gray;
+}
 
-
+#trCustomStyle {
+    background-color: lightgray;
+}

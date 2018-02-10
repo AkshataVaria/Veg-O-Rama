@@ -34,17 +34,21 @@
 
             case 'Subs': response = displaySubs();
                      productType = 'Subs';
-                     imgSrc = "images/sub.jpg"
+                     imgSrc = "images/subs.jpg"
                      break;
                
             case 'wraps': response = displayWraps();
                 productType = 'Wraps';
-                imgSrc = "images/fries.jpg"
+                imgSrc = "images/wraps.jpg"
                 break;
 
             case 'Breakfast': response = displayBreakfastItems();
                 productType = 'Breakfast';
-                imgSrc = "images/breakfast3.jpg"
+                imgSrc = "images/breakfast2.jpg"
+                break;
+            case 'Custom': response = displayCustomizedItems();
+                productType = 'Customized item';
+                imgSrc = "images/bowl1.jpg"
                 break;
         }
        
@@ -68,7 +72,7 @@
             const productName = code + "." + response[prop].productName;
             var divProductName = document.createElement("a");
             var textnode = document.createTextNode(productName)
-            divProductName.href = "javascript:openPopUp('"+code+"')" 
+           
             divProductName.appendChild(textnode);
 
             const productDescription = response[prop].description;
@@ -76,19 +80,16 @@
             var textDesc = document.createTextNode(productDescription)
             divProductDesc.appendChild(textDesc);
             divProductDesc.style.background = "none";
+
             divProductName.appendChild(divProductDesc);
             newRow.appendChild(divProductName)
+            divProductName.href = "javascript:openPopUp('" + code + "')"
+
             divProductName.style.textDecoration = "none";
-            divProductName.style.className = "fontDescription";
+            divProductName.style.className = "fontDescription"    
+            divProductName.style.color = "black"; 
             
-            const btnPlus = '+';
-            var divPlus = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
-            var txtPlus = document.createTextNode(btnPlus);
-            divPlus.appendChild(txtPlus);
-            divPlus.style.background = "none";
-            const colId = 'cartRow' + Math.random();
-            divPlus.setAttribute('id', colId);
-         
+          
 
 
             const price = "$" + response[prop].price;
@@ -96,30 +97,8 @@
             var textnodePrice = document.createTextNode(price)
             divPrice.appendChild(textnodePrice);
             divPrice.style.background = "none";
-            divPlus.appendChild(divPrice);
-
-             
-
-            const btnName = '-';
-            var divMinus = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
-            var txt = document.createTextNode(btnName);
-            divMinus.appendChild(txt);
-            divMinus.style.background = "none";
-            divPlus.appendChild(divMinus)
-
-            newRow.appendChild(divPlus);
-            divPlus.className = "fontBold";
-
-            divPlus.onclick = function () {
-                addToCart('"+code+"');
-                location.reload();
-            };
-
-                divMinus.onclick = function () {
-                decreaseQuantity('"+code+"');
-                location.reload();
-
-            };
+            divPrice.className = "fontBold";
+            newRow.appendChild(divPrice);
             
         }
     }
@@ -128,35 +107,45 @@
 <script>
     function displaySelectedItemsFromCart() {
         //Since the user can select any number of items, creating the div's dynamically
+       
         var response = sessionStorage.getItem("vegOramaCart");
         var result = JSON.parse(response);
         //Cartline is an array and will have multiple items, so looping through and fetching values from session to display inside div's.
         if (result) {
+          console.log(result);
             result.cartLine.forEach((item, rowNumber) => {
                 const newRow = document.getElementById('cartTable').appendChild(document.createElement('tr'));
                 const rowId = 'cartRow' + rowNumber;
                 newRow.setAttribute('id', rowId);
-                
-
                 var code = item.code;
-                const productName = code + "." + item.productName;
-                var divProductName = document.createElement("div");
-                var textnode = document.createTextNode(productName)
-                divProductName.appendChild(textnode);
-                newRow.appendChild(divProductName)
 
                 var btnMinus = document.createElement("img");
-                btnMinus.src = "images/minus.png";
-                btnMinus.style.width = "20px"
-                btnMinus.style.height = "30px";
+                btnMinus.src = "images/edit1.jpg";
+                btnMinus.style.width = "15px"
+                btnMinus.style.height = "18px";
                 newRow.appendChild(btnMinus);
 
                 btnMinus.onclick = function () {
-                    decreaseQuantity(item.code)
-                    location.reload();
-
+                    // decreaseQuantity(item.code)        
+                    // location.reload();
+                    openPopUp('" + code + "');
+                   
                 };
-                              
+               
+                const productName = code + "." + item.productName;
+                var divProductName = document.createElement("div");
+                var textnode = document.createTextNode(productName)
+                divProductName.appendChild(textnode);  
+
+                if(item.notes)
+                {
+                var notes = "[" + item.notes + "]";                
+                var divNotes = document.createElement("div");
+                var textNotes = document.createTextNode(notes);
+                divProductName.appendChild(textNotes);
+                }    
+
+                newRow.appendChild(divProductName)
 
                 const quantity = item.qty;
                 var divQty = document.createElement("div");
@@ -166,20 +155,23 @@
 
 
             
-                var btnPlus = document.createElement("img");
-                btnPlus.src = "images/plus.png";
-                btnPlus.style.width = "15px"
-                btnPlus.style.height = "23px";
-                newRow.appendChild(btnPlus);
+                
+            
+                // var btnPlus = document.createElement("img");
+                // btnPlus.src = "images/plus.png";
+                // btnPlus.style.width = "15px"
+                // btnPlus.style.height = "23px";
+                // newRow.appendChild(btnPlus);
 
-                btnPlus.onclick = function () {
-                    addToCart(item.code)
-                    location.reload();
+                // btnPlus.onclick = function () {
+                //     addToCart(item.code,null)   
+                //     location.reload();
+               
 
-                };
+                // };
 
 
-                const price = item.price;
+                const price = "$"+ item.price;
                 var divPrice = document.createElement("div");
                 var textnodePrice = document.createTextNode(price)
                 divPrice.appendChild(textnodePrice);
@@ -190,6 +182,7 @@
                 btnCancel.src = "images/DeleteImg.png";
                 btnCancel.style.width = "18px"
                 btnCancel.style.height = "20px";
+                btnCancel.style.alignItems="right"
                 newRow.appendChild(btnCancel);
                 btnCancel.onclick = function () {
 
@@ -197,6 +190,7 @@
                     deleteCartItem(rowId, item.code)
                     location.reload();
 
+                  
 
                 }
 
@@ -205,7 +199,7 @@
 
             })
 
-            const totalprice = "$" + result.totalPrice;
+            const totalprice = "$" + result.totalPrice
             var divTotalPrice = document.createElement("div");
             var textnodeTotalPrice = document.createTextNode(totalprice)
             divTotalPrice.appendChild(textnodeTotalPrice);
@@ -224,12 +218,12 @@
             divFinalTotalPrice.appendChild(textnodeTotalPrice);
             document.getElementById('dvFinalTotalPrice').appendChild(divFinalTotalPrice);
             divFinalTotalPrice.className="fontBold"
-            document.getElementById('dvQuantity').innerHTML = "(" + result.totalQuantity + ")";
+           
         }
         else {
 
             document.getElementById('dvShowNoitems').innerHTML = "Your bag is empty!";
-            document.getElementById('dvQuantity').innerHTML = " ";
+            
         }
 
 
@@ -256,12 +250,7 @@
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
-                    <li>
-                        <a href="description.html"><img src="images/shoppingBag1.png" width="23" height="35" /></a>
-                    </li>
-                    <li class="quantity">
-                        <div id="dvQuantity"></div>  <!--Div to show the quantity of items in the cart,beside the cart image-->
-                    </li>
+                 
                 </ul>
             </div>
         </div>
@@ -377,47 +366,81 @@
             </ul>
         </div>
     </div>
+
     <div id="myModal" class="modal">
+        <div class="modal-content">
+        <span class="close" id="closeModal" onclick="hideModal(); return false" >&times;</span>       
+      <table id="tblPopUp">
+          <tr id="trPopupHeader">
+              <td style="width:100%"  id="modalItemName" colspan="2"> </td> 
+            </tr>     
+          <tr>
+              <td style="width:100%" colspan="2" id="modalItemDesc">   </td>
+         </tr>      
+          <tr>
+              <td > <b>Price:</b> </td>
+              <td class="txtRightAlign" id="modalItemPrice"> </td>       
+         </tr>
+         <tr>
+             <td>  <label for="name"><b>Quantity:</b></label></td>
+             <td class="txtRightAlign">  <input type="button"  onclick="decrementValue()" value="-" >
+                               <input type="number" min="1" id="modalItemQty"  value="1"/>
+                               <input type="button" onclick="incrementValue()" value="+" /> 
+                               <input type="hidden" id="modalItemCode" ></td> 
+         </tr>
+          <tr style="display:none" id="trCustomStyle">
+              <td colspan="2">
+                  <div id="dvCustomItems">
+                      Choose a style
 
-        <!-- Modal content -->
-  <div class="modal-content">
-   <span class="close" id="closeModal" onclick="hideModal(); return false">&times;</span>
-   <div id="modalItem">
-   <h2 id="modalItemName"> </h2>
-   <h2 id="modalItemDesc"> </h2>
-   <td> <img src="images/burger.jpg" alt="" width="400" height="300" align="left"/></td>
-   <p><b>Price:</b><h3 id="modalItemPrice"> </h3> </p>
-    <form method="post" action="">
-     <div>
-     <label for="name"><b>Quantity:</b></label>
-     <input type="button"  onclick="decrementValue()" value="-" >
-     <input type="number" min="1" id="modalItemQty" value="1"/>
-     <input type="button" onclick="incrementValue()" value="+" />      
-		<input type="hidden" name="modalItemCode" >
-     </div>
-    </form>
-     <legend><b> Choose your burger type: </b></legend>
-     <label for="bun">Bun</label>
-     <input type="radio" name="type" id="bun" value="Bun">
-     <label for="Bread">Bread</label>
-     <input type="radio" name="type" id="bread" value="Bread">
-  
-      <legend><b> Make it:</b></legend>
-      <input type="checkbox" name="type" value="Vegan"  onchange="addExtraCharges(this)"> Vegan   (+$1.00)<br>
-      <input type="checkbox" name="type" value="Gluten Free" onchange="addExtraCharges(this)"> Gluten Free  (+$1.00)<br>
-     
-      <label for="comment"><b> Special Request: </b></label>
-      <textarea rows="4" cols="50">
-      </textarea>
+                      <div>Required choose 1</div>
+                      <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice()"><label>Wrap</label>
+                      <input type="radio" name="typeOfItem" id="rdPizza" value="5.49"  onchange="calculateBowlPrice()"><label>Pizza</label>
+                      <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice()"><label>Bowl + $1.00</label>
+                  </div>
+              </td>
+          </tr>
+          <tr style="display:none" id="trCustomExtra">
+              <td colspan="2">
+                  <div class="fontBold">Would you like to add extra?</div>
+                  <div>Optional- Choose a maximum of 1</div>
+                  <input type="checkbox" name="typeOfRice" id="chkBasmati" value="1.00" onchange="calculateBowlRice()"><label>Add basmati + $1.00</label>
+                  <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="calculateBowlRice()"><label>Add brown rice + $1.00</label><br/>
+              </td>
+          </tr>
+         <tr>
+             <td colspan="2">
+                    <b> Complete your meal: </b><br>
+                    <input type="checkbox" name="typeOfAddOn" id="chkPopper" value="3.49"   onchange="addExtraCharges(this)"><label>8 Jalepeno Poppers + $3.49</label><br/>                  
+                    <input type="checkbox" name="typeOfAddOn" id="chkSamosa" value= "2.99"   onchange="addExtraCharges(this)"><label>2 Classic Samosa + $2.99</label><br/>                   
+                    <input type="checkbox"  name="typeOfAddOn" id="chkFries" value= "2.99"   onchange="addExtraCharges(this)"><label>Famous Masala Fries + $2.99</label><br/>
+                    <input type="checkbox"  name="typeOfAddOn" id="chkFritters" value= "3.99" onchange="addExtraCharges(this)"> <label>8 Crispy Pakora Fritters + $3.99</label><br/>    
+             </td>
+         </tr>
+        
+         <tr>
+             <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
+           
+         </tr>
+         <tr>
+             <td colspan="2">
+                     <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
+             </td>
+         </tr>
+
+      </table>
       
-    </form>
-    <p align="right">
-      <input color="blue" type="button" value="Add to Cart" />
-    </p>
+      <input id="btnAddToBag" type="button" value="Add to bag:"   onclick="getItemCode()">     
+      <div></div>   
+            <table id="tblImg">
+            <tr>
+                <td> <div><img src="" id="imgMenuItem" alt="" width="358" height="320" /></div> </td>
+            </tr>
+         </table>
    </div>
-  </div>
-
     </div>
-    
+
+
+  
 </body>
 </html>
