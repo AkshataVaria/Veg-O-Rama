@@ -341,7 +341,7 @@ function getOptionalMenuItemCodes()
 
 function addToCart(code){	   
     if(menuCard[code]){
-  
+       
    var cartLine = new Object();        
     cartLine.code = code;
     cartLine.productName = menuCard[code].productName;
@@ -508,9 +508,16 @@ function generateHtmlCustomizedItems(code)
     var modal1 = document.getElementById('trCustomExtra');
     modal1.style.display = "block";
 }
-function generateHtmlForBurgerPopUp()
+function generateHtmlForBurgerPopUp(code)
 {
     generatePopUpHtmlForGenericItems(code); 
+    var modal = document.getElementById('trBurgerItems');
+    modal.style.display = "block";
+    var modal1 = document.getElementById('trBurgerExtra');
+    modal1.style.display = "block";
+    
+
+    
 }
 function generatePopUpHtmlForGenericItems(code)
 {
@@ -530,7 +537,8 @@ function generatePopUpHtmlForGenericItems(code)
 }
 function setPriceAddToBagBtn()
 {
-    document.getElementById('btnAddToBag').value ="Add to bag:" + document.getElementById('modalItemPrice').innerHTML;
+    document.getElementById('btnAddToBag').value = "Add to bag:" + document.getElementById('modalItemPrice').innerHTML;
+  
     
 }
 function hideModal(){
@@ -553,6 +561,57 @@ function decrementValue()
 		value--;
 	}
     document.getElementById('modalItemQty').value = value;
+}
+
+function AddExtraBurgerCharges() {
+    var currentPrice;
+    var chkBurgerExtra = document.getElementsByName('chkBurgerExtra');
+    for (let i = 0; i < chkBurgerExtra.length; i++) {
+
+        if (chkBurgerExtra[i].checked) {
+            currentPrice = getCurrentItemPrice();
+            currentPrice = (currentPrice + 1).toFixed(2);
+            setCurrentPrice(currentPrice)
+        }
+
+        else {
+            if (currentPrice >= 0) {
+                currentPrice = getCurrentItemPrice();
+                currentPrice = (currentPrice -1).toFixed(2);
+                setCurrentPrice(currentPrice)
+            }
+        }
+    }
+    setPriceAddToBagBtn()
+}
+
+function addSecondBurgerPrice() {
+    var currentPrice;
+    var rdSecondBurger = document.getElementsByName('rdBurgerType');
+    for (var i = 0, len = rdSecondBurger.length; i < len; i++)
+    {
+        if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "rdGolden" || rdSecondBurger[i].id == "rdLoveSeed")) {
+            currentPrice = getCurrentItemPrice();
+            currentPrice = (currentPrice + 2.00).toFixed(2);
+            setCurrentPrice(currentPrice)
+         
+
+        }
+        else if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "rdPeanut" || rdSecondBurger[i].id == "rdMeanGreen" || rdSecondBurger[i].id == "rdGoldenBird" || rdSecondBurger[i].id == "rdPeanutCrusted")) {
+
+            currentPrice = getCurrentItemPrice();
+            currentPrice = (currentPrice + 2.50).toFixed(2);
+            setCurrentPrice(currentPrice)
+
+
+
+        }
+        else {
+            
+        }
+       
+    }
+    setPriceAddToBagBtn();
 }
 function calculateBowlPrice() {
     var currentPrice;
@@ -611,13 +670,16 @@ function calculateOptionalItemsPrice() {
                 currentPrice = getCurrentItemPrice();
                 currentPrice = (currentPrice + parseFloat(checkboxesAddOn[i].value)).toFixed(2);               
                 setCurrentPrice(currentPrice);
-            
+              
 
-            } else {
+            }
+            else {
+                currentPrice = getCurrentItemPrice();
                 if (currentPrice >= 0) {
                     currentPrice = getCurrentItemPrice();
                     currentPrice = (currentPrice - parseFloat(checkboxesAddOn[i].value)).toFixed(2);
                     setCurrentPrice(currentPrice)
+                  
                 }
             }
             

@@ -979,6 +979,7 @@ ul#navigation {
     overflow: auto; /* Enable scroll if needed */
     /*background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4);*/
+   
 }
 
 /* Modal Content */
@@ -992,13 +993,16 @@ ul#navigation {
     top: 0;
     overflow-x: auto;
     overflow-y: auto;
+    font-size:12px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
-#tblPopUp{
-	width:60%;
-	border-right: dotted 1px;
-	border-right-color: gray;
-	border-bottom: dotted 1px;
+#tblPopUp {
+    width: 60%;
+    border-right: dotted 1px;
+    border-right-color: gray;
+    border-bottom: dotted 1px;
     border-bottom-color: gray;
+    float: left;
 }
 #tblPopUp tr{	
 	border-bottom: dotted 1px;
@@ -1006,7 +1010,7 @@ ul#navigation {
 
 }
 #modalItemQty{
-	width:30px;
+	width:20px;
 }
 #trPopupHeader {
     background-color: green;
@@ -1014,9 +1018,9 @@ ul#navigation {
     display: row;
     flex: grow;
 }
-#tblImg {
+#divMenuImg {
     float: right;
-    margin-top: -50%;
+    margin-top: 4%;
 }
 
 
@@ -1026,7 +1030,7 @@ ul#navigation {
 	color: white;
 	margin-top: 105px;
 	height:40px;  
-    width:900px;
+    width:580px;
 }
 /* The Close Button */
 .close {
@@ -1057,9 +1061,20 @@ ul#navigation {
     border-bottom-color: gray;
 
 }
+#trBurgerItems {
+    display: flex;
+    flex-direction: row;
+}
+.paddingBurger{
+    padding-left:5px;
+    padding-top:5px;
+}
+.burgerStyle{
+    margin-left:5px;
+} 
+
 
 .tblDesc td {
-
     text-align: left !important;
 }
 

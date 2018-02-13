@@ -88,9 +88,6 @@
             divProductName.style.textDecoration = "none";
             divProductName.style.className = "fontDescription"    
             divProductName.style.color = "black"; 
-            
-          
-
 
             const price = "$" + response[prop].price;
             var divPrice = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
@@ -128,7 +125,7 @@
                 btnMinus.onclick = function () {
                     // decreaseQuantity(item.code)        
                     // location.reload();
-                    openPopUp('" + code + "');
+                    openPopUp(code);
                    
                 };
                
@@ -146,43 +143,28 @@
                 }    
 
                 newRow.appendChild(divProductName)
-
+                divProductName.style.width = "60%";
                 const quantity = item.qty;
                 var divQty = document.createElement("div");
                 var textnodeQty = document.createTextNode(quantity);
                 divQty.appendChild(textnodeQty);
                 newRow.appendChild(divQty)
-
-
-            
-                
-            
-                // var btnPlus = document.createElement("img");
-                // btnPlus.src = "images/plus.png";
-                // btnPlus.style.width = "15px"
-                // btnPlus.style.height = "23px";
-                // newRow.appendChild(btnPlus);
-
-                // btnPlus.onclick = function () {
-                //     addToCart(item.code,null)   
-                //     location.reload();
-               
-
-                // };
-
+                divQty.style.width = "20%"
+                divQty.style.textAlign = "left";
 
                 const price = "$"+ item.price;
                 var divPrice = document.createElement("div");
                 var textnodePrice = document.createTextNode(price)
                 divPrice.appendChild(textnodePrice);
-                newRow.appendChild(divPrice)              
-               
+                newRow.appendChild(divPrice)
+                divPrice.style.width = "20%";
+                divQty.style.textAlign = "center";
 
                 var btnCancel = document.createElement("img");
-                btnCancel.src = "images/DeleteImg.png";
-                btnCancel.style.width = "18px"
-                btnCancel.style.height = "20px";
-                btnCancel.style.alignItems="right"
+                btnCancel.src = "images/DeleteNew.jpg";
+                btnCancel.style.width = "10%"
+                btnCancel.style.height = "25px";
+              
                 newRow.appendChild(btnCancel);
                 btnCancel.onclick = function () {
 
@@ -195,8 +177,7 @@
                 }
 
                 btnCancel.style.borderRadius = "8px";
-                btnCancel.style.backgroundColor = "red";
-
+              
             })
 
             const totalprice = "$" + result.totalPrice
@@ -250,7 +231,7 @@
                     <li>
                         <a href="contact.html">Contact</a>
                     </li>
-                 
+
                 </ul>
             </div>
         </div>
@@ -258,32 +239,32 @@
     <div id="body" style="background-color:white !important">
 
         <div class="content" style="background:none !important">
-            <table id ="tblDescription" class ="tblDesc" style="border-style:solid;border-color:gray;">
+            <table id="tblDescription" class="tblDesc" style="border-style:solid;border-color:gray;">
                 <tr>
                     <th class="headerColor" id="tblHeader"></th>
                 </tr>
-            
+
             </table>
         </div>
         <div class="sidebar">
-           
+
             <div id="dvMain" class="displayMain" style="width:100%">
                 <table id="cartTable" class="cart" style="width:100%;">
                     <tr>
                         <td> <h1>Veg-O-Rama</h1></td>
-                        <td colspan="5"></td>
+                        <td colspan="4"></td>
                     </tr>
                     <!--*Display description in first row *-->
                     <tr id="tblCartDesc">
-                        <td style="width:50%">
+                        <td style="width:60%">
                             Item
                         </td>
-                        <td style="width:5%"></td>
-                        <td style="width:20%">
+
+                        <td style="width:15%">
                             Qty
                         </td>
-                        <td style="width:5%"></td>
-                        <td style="width:15%">
+
+                        <td style="width:20%">
                             Price
                         </td>
                         <td style="width:5%"></td>
@@ -316,7 +297,7 @@
                 <button onclick="navigate()" id="btnProceed">Proceed to check out </button>
                 <button id="btnCancel">Cancel </button>
             </div>
-            
+
 
         </div>
     </div>
@@ -369,78 +350,109 @@
 
     <div id="myModal" class="modal">
         <div class="modal-content">
-        <span class="close" id="closeModal" onclick="hideModal(); return false" >&times;</span>       
-      <table id="tblPopUp">
-          <tr id="trPopupHeader">
-              <td style="width:100%"  id="modalItemName" colspan="2"> </td> 
-            </tr>     
-          <tr>
-              <td style="width:100%" colspan="2" id="modalItemDesc">   </td>
-         </tr>      
-          <tr>
-              <td > <b>Price:</b> </td>
-              <td class="txtRightAlign" id="modalItemPrice"> </td>       
-         </tr>
-         <tr>
-             <td>  <label for="name"><b>Quantity:</b></label></td>
-             <td class="txtRightAlign">  <input type="button"  onclick="decrementValue()" value="-" >
-                               <input type="number" min="1" id="modalItemQty"  value="1"/>
-                               <input type="button" onclick="incrementValue()" value="+" /> 
-                               <input type="hidden" id="modalItemCode" ></td> 
-         </tr>
-          <tr style="display:none" id="trCustomStyle">
-              <td colspan="2">
-                  <div id="dvCustomItems">
-                      Choose a style
+            <span class="close" id="closeModal" onclick="hideModal(); return false">&times;</span>
+            <table id="tblPopUp">
+                <tr id="trPopupHeader">
+                    <td style="width:100%" id="modalItemName" colspan="2"> </td>
+                </tr>
+                <tr>
+                    <td style="width:100%" colspan="2" id="modalItemDesc">   </td>
+                </tr>
+                <tr>
+                    <td> <b>Price:</b> </td>
+                    <td class="txtRightAlign" id="modalItemPrice"> </td>
+                </tr>
+                <tr>
+                    <td>  <label for="name"><b>Quantity:</b></label></td>
+                    <td class="txtRightAlign">
+                        <input type="button" onclick="decrementValue()" value="-">
+                        <input type="number" min="1" id="modalItemQty" value="1" />
+                        <input type="button" onclick="incrementValue()" value="+" />
+                        <input type="hidden" id="modalItemCode">
+                    </td>
+                </tr>
+                <tr id="trBurgerItems" style="display:none;background-color:lightgray">
+                    <td>
+                        <div>
+                            <b>*Choose second burger:</b>
+                            <div>Required choose 2nd  </div>
+                            <div class="paddingBurger">
+                                <input type="radio" name="rdBurgerType" id="rdPeanut" value="2.50" onchange="addSecondBurgerPrice()" required>Peanut Crusted Cajun Blackbean Burger
+                                <input type="radio" name="rdBurgerType" id="rdMeanGreen" value="2.50" onchange="addSecondBurgerPrice()" required>Mean Green Protein Pea Burger
+                            </div>
+                            <div class="paddingBurger">
+                                <input type="radio" name="rdBurgerType" id="rdGolden" value="2.00" onchange="addSecondBurgerPrice()">Golden Crunchy Potato Burger
+                                <input type="radio" name="rdBurgerType" id="rdLoveSeed" value="2.00" onchange="addSecondBurgerPrice()">The Love Seed Beet Them All Burger
+                            </div>
+                            <div class="paddingBurger">
+                                <input type="radio" name="rdBurgerType" id="rdGoldenBird" value="2.50" onchange="addSecondBurgerPrice()">Golden Crunchy Bird's Nest Burger
+                                <input type="radio" name="rdBurgerType" id="rdPeanutCrusted" value="2.50" onchange="addSecondBurgerPrice()">Peanut Crusted Blackbean Burger
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr id="trBurgerExtra">
+                    <td>
+                        <b> Choose extras as you'd like:</b><br />
+                        <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="AddExtraBurgerCharges()"> Vegan Cheese  +$1.00<br>
+                        <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="AddExtraBurgerCharges()"> Gluten Free bun  +$1.00
+                    </td>
+                </tr>
+                <tr style="display:none" id="trCustomStyle">
+                    <td colspan="2">
+                        <div id="dvCustomItems">
+                            Choose a style
 
-                      <div>Required choose 1</div>
-                      <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice()"><label>Wrap</label>
-                      <input type="radio" name="typeOfItem" id="rdPizza" value="5.49"  onchange="calculateBowlPrice()"><label>Pizza</label>
-                      <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice()"><label>Bowl + $1.00</label>
-                  </div>
-              </td>
-          </tr>
-          <tr style="display:none" id="trCustomExtra">
-              <td colspan="2">
-                  <div class="fontBold">Would you like to add extra?</div>
-                  <div>Optional- Choose a maximum of 1</div>
-                  <input type="checkbox" name="typeOfRice" id="chkBasmati" value="1.00" onchange="calculateBowlRice()"><label>Add basmati + $1.00</label>
-                  <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="calculateBowlRice()"><label>Add brown rice + $1.00</label><br/>
-              </td>
-          </tr>
-         <tr>
-             <td colspan="2">
-                    <b> Complete your meal: </b><br>
-                    <input type="checkbox" name="typeOfAddOn" id="chkPopper" value="3.49"   onchange="addExtraCharges(this)"><label>8 Jalepeno Poppers + $3.49</label><br/>                  
-                    <input type="checkbox" name="typeOfAddOn" id="chkSamosa" value= "2.99"   onchange="addExtraCharges(this)"><label>2 Classic Samosa + $2.99</label><br/>                   
-                    <input type="checkbox"  name="typeOfAddOn" id="chkFries" value= "2.99"   onchange="addExtraCharges(this)"><label>Famous Masala Fries + $2.99</label><br/>
-                    <input type="checkbox"  name="typeOfAddOn" id="chkFritters" value= "3.99" onchange="addExtraCharges(this)"> <label>8 Crispy Pakora Fritters + $3.99</label><br/>    
-             </td>
-         </tr>
-        
-         <tr>
-             <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
-           
-         </tr>
-         <tr>
-             <td colspan="2">
-                     <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
-             </td>
-         </tr>
+                            <div>Required choose 1</div>
+                            <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice()"><label>Wrap</label>
+                            <input type="radio" name="typeOfItem" id="rdPizza" value="5.49" onchange="calculateBowlPrice()"><label>Pizza</label>
+                            <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice()"><label>Bowl + $1.00</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="display:none" id="trCustomExtra">
+                    <td colspan="2">
+                        <div class="fontBold">Would you like to add extra?</div>
+                        <div>Optional- Choose a maximum of 1</div>
+                        <input type="checkbox" name="typeOfRice" id="chkBasmati" value="1.00" onchange="calculateBowlRice()"><label>Add basmati + $1.00</label>
+                        <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="calculateBowlRice()"><label>Add brown rice + $1.00</label><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <b> Complete your meal: </b><br>
+                        <input type="checkbox" name="typeOfAddOn" id="chkPopper" value="3.49" onchange="addExtraCharges(this)"><label>8 Jalepeno Poppers + $3.49</label><br />
+                        <input type="checkbox" name="typeOfAddOn" id="chkSamosa" value="2.99" onchange="addExtraCharges(this)"><label>2 Classic Samosa + $2.99</label><br />
+                        <input type="checkbox" name="typeOfAddOn" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Famous Masala Fries + $2.99</label><br />
+                        <input type="checkbox" name="typeOfAddOn" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>8 Crispy Pakora Fritters + $3.99</label><br />
+                    </td>
+                </tr>
 
-      </table>
+                <tr>
+                    <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <input id="btnAddToBag" type="button" value="Add to bag:" onclick="getItemCode()"> </td>
+                </tr>
+
+            </table>
+            <div id="divMenuImg">
+                <div><img src="" id="imgMenuItem" alt="" width="300" height="320" /></div>
+            </div>
+
+        </div>
+
       
-      <input id="btnAddToBag" type="button" value="Add to bag:"   onclick="getItemCode()">     
-      <div></div>   
-            <table id="tblImg">
-            <tr>
-                <td> <div><img src="" id="imgMenuItem" alt="" width="358" height="320" /></div> </td>
-            </tr>
-         </table>
-   </div>
     </div>
+   
 
 
-  
+
 </body>
 </html>
