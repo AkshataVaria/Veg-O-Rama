@@ -988,7 +988,7 @@ ul#navigation {
     margin: auto;
     border: 1px solid #888;
     width: 60%;
-    height: 70%;
+    height: 65%;
     left: 0;
     top: 0;
     overflow-x: auto;
@@ -1028,7 +1028,7 @@ ul#navigation {
 #btnAddToBag{
 	background-color:green;
 	color: white;
-	margin-top: 105px;
+	margin-top: 15px;
 	height:40px;  
     width:580px;
 }
