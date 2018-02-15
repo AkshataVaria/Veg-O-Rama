@@ -17,6 +17,7 @@
         var response;
         var productType;
         var imgSrc;
+        var burgerAmt;
         var parameters = location.search.substring(1).split("&");
         var temp = parameters[0].split("=");
         choice = unescape(temp[1]);
@@ -25,6 +26,7 @@
             case 'Burger': response = displayBurgers();
                 productType = 'Burgers';
                 imgSrc = "images/burger.jpg";
+                burgerAmt = "";
                 break;
 
             case 'Bowls': response = displayBowls();
@@ -88,8 +90,14 @@
             divProductName.style.textDecoration = "none";
             divProductName.style.className = "fontDescription"    
             divProductName.style.color = "black"; 
-
-            const price = "$" + response[prop].price;
+            var price;
+            if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
+                price = burgerAmt;
+            }
+            else {
+                 price = "$" + response[prop].price;
+            }
+         
             var divPrice = document.createElement("span"); /*I have changed this to span because it was inheriting style from #body .content div div and breaking the UI. It is a temporary fix*/
             var textnodePrice = document.createTextNode(price)
             divPrice.appendChild(textnodePrice);
@@ -377,25 +385,25 @@
                             <b>*Choose second burger:</b>
                             <div>Required choose 2nd  </div>
                             <div class="paddingBurger">
-                                <input type="radio" name="rdBurgerType" id="rdPeanut" value="2.50" onchange="addSecondBurgerPrice()" required>Peanut Crusted Cajun Blackbean Burger
-                                <input type="radio" name="rdBurgerType" id="rdMeanGreen" value="2.50" onchange="addSecondBurgerPrice()" required>Mean Green Protein Pea Burger
+                                <input type="radio" name="rdBurgerType" id="rdPeanut" value="2.50" onchange="addSecondBurgerPrice(this)" required>Peanut Crusted Cajun Blackbean Burger
+                                <input type="radio" name="rdBurgerType" id="rdMeanGreen" value="2.50" onchange="addSecondBurgerPrice(this)" required>Mean Green Protein Pea Burger
                             </div>
                             <div class="paddingBurger">
-                                <input type="radio" name="rdBurgerType" id="rdGolden" value="2.00" onchange="addSecondBurgerPrice()">Golden Crunchy Potato Burger
-                                <input type="radio" name="rdBurgerType" id="rdLoveSeed" value="2.00" onchange="addSecondBurgerPrice()">The Love Seed Beet Them All Burger
+                                <input type="radio" name="rdBurgerType" id="rdGolden" value="2.00" onchange="addSecondBurgerPrice(this)">Golden Crunchy Potato Burger
+                                <input type="radio" name="rdBurgerType" id="rdLoveSeed" value="2.00" onchange="addSecondBurgerPrice(this)">The Love Seed Beet Them All Burger
                             </div>
                             <div class="paddingBurger">
-                                <input type="radio" name="rdBurgerType" id="rdGoldenBird" value="2.50" onchange="addSecondBurgerPrice()">Golden Crunchy Bird's Nest Burger
-                                <input type="radio" name="rdBurgerType" id="rdPeanutCrusted" value="2.50" onchange="addSecondBurgerPrice()">Peanut Crusted Blackbean Burger
+                                <input type="radio" name="rdBurgerType" id="rdGoldenBird" value="2.50" onchange="addSecondBurgerPrice(this)">Golden Crunchy Bird's Nest Burger
+                                <input type="radio" name="rdBurgerType" id="rdPeanutCrusted" value="2.50" onchange="addSecondBurgerPrice(this)">Peanut Crusted Blackbean Burger
                             </div>
                         </div>
                     </td>
                 </tr>
-                <tr id="trBurgerExtra">
+                <tr id="trBurgerExtra"  style="display:none">
                     <td>
                         <b> Choose extras as you'd like:</b><br />
-                        <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="AddExtraBurgerCharges()"> Vegan Cheese  +$1.00<br>
-                        <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="AddExtraBurgerCharges()"> Gluten Free bun  +$1.00
+                        <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)"> Vegan Cheese  +$1.00<br>
+                        <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)"> Gluten Free bun  +$1.00
                     </td>
                 </tr>
                 <tr style="display:none" id="trCustomStyle">
@@ -414,8 +422,8 @@
                     <td colspan="2">
                         <div class="fontBold">Would you like to add extra?</div>
                         <div>Optional- Choose a maximum of 1</div>
-                        <input type="checkbox" name="typeOfRice" id="chkBasmati" value="1.00" onchange="calculateBowlRice()"><label>Add basmati + $1.00</label>
-                        <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="calculateBowlRice()"><label>Add brown rice + $1.00</label><br />
+                        <input type="checkbox" name="typeOfRice" id="chkBasmati" value="1.00" onchange="addExtraCharges(this)"><label>Add basmati + $1.00</label>
+                        <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
                     </td>
                 </tr>
                 <tr>
@@ -442,9 +450,7 @@
                 </tr>
 
             </table>
-            <div id="divMenuImg">
-                <div><img src="" id="imgMenuItem" alt="" width="300" height="320" /></div>
-            </div>
+         
 
         </div>
 

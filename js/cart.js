@@ -528,8 +528,7 @@ function generatePopUpHtmlForGenericItems(code)
         document.getElementById('modalItemName').innerHTML  = menuCard[code].productName;
         document.getElementById('modalItemDesc').innerHTML  = menuCard[code].description;
         document.getElementById('modalItemPrice').innerHTML = '$' + menuCard[code].price;
-        document.getElementById('modalItemCode').innerHTML = code;
-        document.getElementById('imgMenuItem').src = menuCard[code].imageUrl;
+        document.getElementById('modalItemCode').innerHTML = code;     
         
     }
     setPriceAddToBagBtn();
@@ -585,32 +584,20 @@ function AddExtraBurgerCharges() {
     setPriceAddToBagBtn()
 }
 
-function addSecondBurgerPrice() {
+function addSecondBurgerPrice(element) {
     var currentPrice;
-    var rdSecondBurger = document.getElementsByName('rdBurgerType');
-    for (var i = 0, len = rdSecondBurger.length; i < len; i++)
-    {
-        if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "rdGolden" || rdSecondBurger[i].id == "rdLoveSeed")) {
-            currentPrice = getCurrentItemPrice();
-            currentPrice = (currentPrice + 2.00).toFixed(2);
-            setCurrentPrice(currentPrice)
-         
+    if (element.checked) {
+        currentPrice = getCurrentItemPrice();
+        currentPrice = (currentPrice + parseFloat(element.value)).toFixed(2);
+        setCurrentPrice(currentPrice)
 
-        }
-        else if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "rdPeanut" || rdSecondBurger[i].id == "rdMeanGreen" || rdSecondBurger[i].id == "rdGoldenBird" || rdSecondBurger[i].id == "rdPeanutCrusted")) {
-
-            currentPrice = getCurrentItemPrice();
-            currentPrice = (currentPrice + 2.50).toFixed(2);
-            setCurrentPrice(currentPrice)
-
-
-
-        }
-        else {
-            
-        }
-       
     }
+    else {
+        currentPrice = getCurrentItemPrice();
+        currentPrice = (currentPrice - parseFloat(element.value)).toFixed(2);
+        setCurrentPrice(currentPrice)
+    }
+
     setPriceAddToBagBtn();
 }
 function calculateBowlPrice() {
@@ -636,58 +623,8 @@ function calculateBowlPrice() {
     }
     setPriceAddToBagBtn();
 }
-function calculateBowlRice() {
-    var currentPrice;
-    var checkboxesRice = document.getElementsByName('typeOfRice'); 
-    for (let i = 0; i < checkboxesRice.length; i++) {
-        //checkboxesRice[i].addEventListener('change', () => { /I had added this,coz when user unchecks we wanted this to be called again
 
-            if (checkboxesRice[i].checked) {
-                currentPrice = getCurrentItemPrice();
-                currentPrice = (currentPrice + 1).toFixed(2);
-                setCurrentPrice(currentPrice);
-             
-
-            } else {
-                if (currentPrice >= 0) {
-                    currentPrice = getCurrentItemPrice();
-                    currentPrice = (currentPrice - 1).toFixed(2);
-                    setCurrentPrice(currentPrice)
-                }
-            }
-        //});
-    }
-    setPriceAddToBagBtn();
-}
-
-    //Namita Please check this addEvent Listener thing,it doesnt fire when first checbox is clicked because it does'nt trigger onclick there.
-function calculateOptionalItemsPrice() {
-    var currentPrice;
-    var checkboxesAddOn = document.getElementsByName('typeOfAddOn');
-    for (let i = 0; i < checkboxesAddOn.length; i++) {
-        checkboxesAddOn[i].addEventListener('click', () => {
-            if (checkboxesAddOn[i].checked) {
-                currentPrice = getCurrentItemPrice();
-                currentPrice = (currentPrice + parseFloat(checkboxesAddOn[i].value)).toFixed(2);               
-                setCurrentPrice(currentPrice);
-              
-
-            }
-            else {
-                currentPrice = getCurrentItemPrice();
-                if (currentPrice >= 0) {
-                    currentPrice = getCurrentItemPrice();
-                    currentPrice = (currentPrice - parseFloat(checkboxesAddOn[i].value)).toFixed(2);
-                    setCurrentPrice(currentPrice)
-                  
-                }
-            }
-            
-        });
-    }
-    setPriceAddToBagBtn();
-}
-function setCurrentPrice(currentPrice) {
+ function setCurrentPrice(currentPrice) {
     document.getElementById('modalItemPrice').innerHTML = '$' + currentPrice
  
 }
@@ -702,7 +639,18 @@ function getCurrentItemPrice() {
 }
 function addExtraCharges(element)
 {
-    //Add price for optional menu items
-    calculateOptionalItemsPrice();   
-    setPriceAddToBagBtn();
+    var currentPrice;
+    if (element.checked) {
+
+        currentPrice = getCurrentItemPrice();
+        currentPrice = (currentPrice + parseFloat(element.value)).toFixed(2);
+        setCurrentPrice(currentPrice);
+        setPriceAddToBagBtn();
+    }
+    else {
+        currentPrice = getCurrentItemPrice();
+        currentPrice = (currentPrice - parseFloat(element.value)).toFixed(2);
+        setCurrentPrice(currentPrice);
+        setPriceAddToBagBtn();
+    }
 }

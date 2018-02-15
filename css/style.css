@@ -987,8 +987,8 @@ ul#navigation {
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
-    width: 60%;
-    height: 65%;
+    width: 41%;
+    height: 84%;
     left: 0;
     top: 0;
     overflow-x: auto;
@@ -997,7 +997,7 @@ ul#navigation {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 #tblPopUp {
-    width: 60%;
+    width: 65%;
     border-right: dotted 1px;
     border-right-color: gray;
     border-bottom: dotted 1px;
@@ -1030,7 +1030,7 @@ ul#navigation {
 	color: white;
 	margin-top: 15px;
 	height:40px;  
-    width:580px;
+    width:600px;
 }
 /* The Close Button */
 .close {
