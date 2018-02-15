@@ -5,8 +5,8 @@ var menuCard = {
         'productType': 'Burger',
         'price': '2.50',
         'description': 'Hand Made patty seared on the grill with black beans, spanish peanuts, rice flour for crunch & our house cajun spice blend',
-        'code':'B1',
-        'imageUrl':"images/burger.jpg"
+        'code': 'B1',
+        'imageUrl': "images/burger.jpg"
     },
     'B2': {
         'productName': 'Mean Green Protein Pea Burger',
@@ -14,7 +14,7 @@ var menuCard = {
         'price': '2.50',
         'description': 'Hand made patty seared on the grill and packed with protein from loads of green peas dusted with a savory spice blend',
         'code': 'B2',
-        'imageUrl':"images/burger.jpg"
+        'imageUrl': "images/burger.jpg"
     },
     'B3': {
         'productName': 'Golden Crunchy Potato Burger',
@@ -22,7 +22,7 @@ var menuCard = {
         'price': '2.00',
         'description': 'A classic from the streets of India.. potatoes, a protein flour blend and secret spices make up this craveable, crunchy street food delight.',
         'code': 'B3',
-        'imageUrl':"images/burger.jpg"
+        'imageUrl': "images/burger.jpg"
     },
     'B4': {
         'productName': 'The Love Seed Beet them All Burger',
@@ -30,7 +30,7 @@ var menuCard = {
         'price': '2.00',
         'description': 'Fresh shredded beets, roasted sunflower seeds, flax seed, buck wheat, chickpea flour and just the right spice',
         'code': 'B4',
-        'imageUrl':"images/burger.jpg"
+        'imageUrl': "images/burger.jpg"
     },
     'B5': {
         'productName': 'Golden Crunchy Bird\'s Nest Burger',
@@ -38,15 +38,15 @@ var menuCard = {
         'price': '2.50',
         'description': 'A sell out every rock show we ever set up at.. think coleslaw deepfried in a healthy chickpea flour base with cajun spice.',
         'code': 'B5',
-        'imageUrl':"images/burger.jpg"
+        'imageUrl': "images/burger.jpg"
     },
     'B6': {
-        'productName': 'Tamarind BBQ Jackfruit Sandwich',
+        'productName': 'Tamarind BBQ Jackfruit Burger/Peanut Crusted Blackbean Burger?',
         'productType': 'Burger',
         'price': '2.50',
         'description': 'Never had jackfruit',
         'code': 'B6',
-        'imageUrl':"images/burger.jpg"
+        'imageUrl': "images/burger.jpg"
     },
     'W1': {
         'productName': 'Butter Paneer',
@@ -299,9 +299,23 @@ function displayBreakfastItems()
 //After clicking Add to cart from pop up, fetch the menu item code, and other item code if any and call AddtoCart function
 function getItemCode()
 {
-    var code = document.getElementById('modalItemCode').innerText;  
-    var optionalItemCodes = getOptionalMenuItemCodes();    
-    this.addToCart(code);  
+    var code = document.getElementById('modalItemCode').innerText;  //If burger,get second burger by code and call AddtoCart
+    if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
+        var getSecondBurger = addSecondBurgerPrice();
+        if (getSecondBurger) {
+            getSecondBurger.forEach(code => {
+                this.addToCart(code);
+            })
+
+
+        }
+        this.addToCart(code);
+    }
+    else {// For all other items,except burger
+        this.addToCart(code); 
+    }
+
+    var optionalItemCodes = getOptionalMenuItemCodes();      
     if (optionalItemCodes) {
         optionalItemCodes.forEach(code => {           
             this.addToCart(code);
@@ -511,6 +525,8 @@ function generateHtmlCustomizedItems(code)
 function generateHtmlForBurgerPopUp(code)
 {
     generatePopUpHtmlForGenericItems(code); 
+    var burgerAdd = document.getElementById('modalBurgerLine'); 
+    burgerAdd.style.display = "block";
     var modal = document.getElementById('trBurgerItems');
     modal.style.display = "block";
     var modal1 = document.getElementById('trBurgerExtra');
@@ -562,68 +578,55 @@ function decrementValue()
     document.getElementById('modalItemQty').value = value;
 }
 
-function AddExtraBurgerCharges() {
+function calculateBowlPrice(element) {
     var currentPrice;
-    var chkBurgerExtra = document.getElementsByName('chkBurgerExtra');
-    for (let i = 0; i < chkBurgerExtra.length; i++) {
-
-        if (chkBurgerExtra[i].checked) {
+        if (element.checked && element.id == "rdBowl") {
             currentPrice = getCurrentItemPrice();
-            currentPrice = (currentPrice + 1).toFixed(2);
+            currentPrice = (currentPrice + parseFloat(element.value)).toFixed(2);
             setCurrentPrice(currentPrice)
         }
 
-        else {
-            if (currentPrice >= 0) {
-                currentPrice = getCurrentItemPrice();
-                currentPrice = (currentPrice -1).toFixed(2);
-                setCurrentPrice(currentPrice)
-            }
-        }
-    }
-    setPriceAddToBagBtn()
-}
+        else if (element.id == "rdWrap" || element.id == "rdPizza") {
 
-function addSecondBurgerPrice(element) {
-    var currentPrice;
-    if (element.checked) {
-        currentPrice = getCurrentItemPrice();
-        currentPrice = (currentPrice + parseFloat(element.value)).toFixed(2);
-        setCurrentPrice(currentPrice)
-
-    }
-    else {
-        currentPrice = getCurrentItemPrice();
-        currentPrice = (currentPrice - parseFloat(element.value)).toFixed(2);
-        setCurrentPrice(currentPrice)
-    }
-
-    setPriceAddToBagBtn();
-}
-function calculateBowlPrice() {
-    var currentPrice;
-    var rdTypeOfStyle = document.getElementsByName('typeOfItem'); 
-    for (let i = 0; i < rdTypeOfStyle.length; i++) {
-
-        if (rdTypeOfStyle[i].checked && rdTypeOfStyle[i].id == "rdBowl") {
-            currentPrice = getCurrentItemPrice();
-            currentPrice = (currentPrice + parseFloat(rdTypeOfStyle[i].value)).toFixed(2);
-            setCurrentPrice(currentPrice)
-        }
-
-        else if (rdTypeOfStyle[i].id == "rdWrap" || rdTypeOfStyle[i].id == "rdPizza") {
-
-            currentPrice = parseFloat(rdTypeOfStyle[i].value).toFixed(2);
+            currentPrice = parseFloat(element.value).toFixed(2);
             setCurrentPrice(currentPrice)
 
         }
         else {
             currentPrice = getCurrentItemPrice();
         }
-    }
+    
     setPriceAddToBagBtn();
 }
 
+function addSecondBurgerPrice() {
+    var secondBurgerSelected = [];
+    var currentPrice;
+    var rdSecondBurger = document.getElementsByName('rdBurgerType');
+    for (var i = 0, len = rdSecondBurger.length; i < len; i++) {
+        if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "B3" || rdSecondBurger[i].id == "B4")) {
+            currentPrice = getCurrentItemPrice();
+            currentPrice = (currentPrice + 2.00).toFixed(2);
+            setCurrentPrice(currentPrice)
+            secondBurgerSelected.push(rdSecondBurger[i].id)
+
+
+        }
+        else if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "B1" || rdSecondBurger[i].id == "B2" || rdSecondBurger[i].id == "B5" || rdSecondBurger[i].id == "B6")) {
+
+            currentPrice = getCurrentItemPrice();
+            currentPrice = (currentPrice + 2.50).toFixed(2);
+            setCurrentPrice(currentPrice)
+            secondBurgerSelected.push(rdSecondBurger[i].id)
+        }
+        else {
+
+        }
+
+    }
+    setPriceAddToBagBtn();
+    return secondBurgerSelected;
+}
  function setCurrentPrice(currentPrice) {
     document.getElementById('modalItemPrice').innerHTML = '$' + currentPrice
  

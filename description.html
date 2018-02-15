@@ -363,6 +363,9 @@
                 <tr id="trPopupHeader">
                     <td style="width:100%" id="modalItemName" colspan="2"> </td>
                 </tr>
+                <tr style="display:none" id="modalBurgerLine">
+                    <td class="fontBold">Choose any 2 burger's for $5.49</td>
+                </tr>
                 <tr>
                     <td style="width:100%" colspan="2" id="modalItemDesc">   </td>
                 </tr>
@@ -385,16 +388,16 @@
                             <b>*Choose second burger:</b>
                             <div>Required choose 2nd  </div>
                             <div class="paddingBurger">
-                                <input type="radio" name="rdBurgerType" id="rdPeanut" value="2.50" onchange="addSecondBurgerPrice(this)" required>Peanut Crusted Cajun Blackbean Burger
-                                <input type="radio" name="rdBurgerType" id="rdMeanGreen" value="2.50" onchange="addSecondBurgerPrice(this)" required>Mean Green Protein Pea Burger
+                                <input type="radio" name="rdBurgerType" id="B1" value="2.50">Peanut Crusted Cajun Blackbean Burger
+                                <input type="radio" name="rdBurgerType" id="B2" value="2.50">Mean Green Protein Pea Burger
                             </div>
                             <div class="paddingBurger">
-                                <input type="radio" name="rdBurgerType" id="rdGolden" value="2.00" onchange="addSecondBurgerPrice(this)">Golden Crunchy Potato Burger
-                                <input type="radio" name="rdBurgerType" id="rdLoveSeed" value="2.00" onchange="addSecondBurgerPrice(this)">The Love Seed Beet Them All Burger
+                                <input type="radio" name="rdBurgerType" id="B3" value="2.00">Golden Crunchy Potato Burger
+                                <input type="radio" name="rdBurgerType" id="B4" value="2.00">The Love Seed Beet Them All Burger
                             </div>
                             <div class="paddingBurger">
-                                <input type="radio" name="rdBurgerType" id="rdGoldenBird" value="2.50" onchange="addSecondBurgerPrice(this)">Golden Crunchy Bird's Nest Burger
-                                <input type="radio" name="rdBurgerType" id="rdPeanutCrusted" value="2.50" onchange="addSecondBurgerPrice(this)">Peanut Crusted Blackbean Burger
+                                <input type="radio" name="rdBurgerType" id="B5" value="2.50">Golden Crunchy Bird's Nest Burger
+                                <input type="radio" name="rdBurgerType" id="B6" value="2.50">Peanut Crusted Blackbean Burger
                             </div>
                         </div>
                     </td>
@@ -412,9 +415,9 @@
                             Choose a style
 
                             <div>Required choose 1</div>
-                            <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice()"><label>Wrap</label>
-                            <input type="radio" name="typeOfItem" id="rdPizza" value="5.49" onchange="calculateBowlPrice()"><label>Pizza</label>
-                            <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice()"><label>Bowl + $1.00</label>
+                            <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice(this)"><label>Wrap</label>
+                            <input type="radio" name="typeOfItem" id="rdPizza" value="5.49" onchange="calculateBowlPrice(this)"><label>Pizza</label>
+                            <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice(this)"><label>Bowl + $1.00</label>
                         </div>
                     </td>
                 </tr>
