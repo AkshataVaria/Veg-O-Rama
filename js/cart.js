@@ -35,6 +35,7 @@ function displaySelectedItem(menuType) {
 function getItemCode(){
     var code = document.getElementById('modalItemCode').innerText;  //If burger,get second burger by code and call AddtoCart
     if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
+        //If user has not selected second burger,dont let them submit
         var getSecondBurger = addSecondBurgerPrice();
         if (getSecondBurger.length == 0) {
             alert("Choose secoond burger");
@@ -45,7 +46,7 @@ function getItemCode(){
                 this.addToCart(code);
                 this.addToCart(secBurgerCode);
                 this.hideModal();
-               // displaySelectedItemsFromCart();
+              
             })
         }
         else {
@@ -58,7 +59,7 @@ function getItemCode(){
     else {// For all other items,except burger
         this.addToCart(code);
         this.hideModal();
-       // displaySelectedItemsFromCart();
+       
       
     }
     var optionalItemCodes = getOptionalMenuItemCodes();
@@ -69,6 +70,8 @@ function getItemCode(){
 
 
     }
+    clearCartAndRerender();
+
 }
 //Depending on what items user has checked, create an array and push those codes in array
 function getOptionalMenuItemCodes()
@@ -98,6 +101,8 @@ function getOptionalMenuItemCodes()
      return optionalMenuItems;
 }
 
+
+//Add items to cart depending on the code
 function addToCart(code){	   
     if(menuCard[code]){
        
@@ -258,6 +263,7 @@ function openPopUp(code) {
   
     
 }
+
 
 function generateHtmlCustomizedItems(code)
 {

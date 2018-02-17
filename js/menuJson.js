@@ -833,6 +833,150 @@ var menuCard = {
         'description': 'This Snack is very tasty. I am writing thiis desc just to see how it looks. Since this modal is a little big',
         'code': 'BC',
         'imageUrl': "images/butterChicken.jpg"
+    },
+    "SW1": {
+        "productName": "Green Chutney Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW1",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW2": {
+        "productName": "Veggie Hummus Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW2",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW3": {
+        "productName": "Alfa Alfa Sprout Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW3",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW4": {
+        "productName": "Veggie Mayo Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW4",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW5": {
+        "productName": "Sweet Corn Spinach Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW5",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW6": {
+        "productName": "Paneer Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW6",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW7": {
+        "productName": "Tomato Basil Cheese Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW7",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "SW8": {
+        "productName": "Chocolate Sandwich",
+        "productType": "Stupendous Sandwiches",
+        "price": "3.99",
+        "description": "Tasty Sandwich",
+        "code": "SW8",
+        "imageUrl": "images/sandwich.jpg"
+    },
+    "C1": {
+        "productName": "Bhel",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "3.99",
+        "description": "Tasty Bhel",
+        "code": "C1",
+        "imageUrl": "images/bhel.jpg"
+    },
+    "C2": {
+        "productName": "Papadi Chaat",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "3.99",
+        "description": "Tasty Bhel",
+        "code": "C2",
+        "imageUrl": "images/papadi.jpg"
+    },
+    "C3": {
+        "productName": "Samosa Chaat",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "3.99",
+        "description": "Tasty Bhel",
+        "code": "C3",
+        "imageUrl": "images/SamosaChaat.jpg"
+    },
+    "C4": {
+        "productName": "Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "5.49",
+        "description": "Tasty Dosa",
+        "code": "C4",
+        "imageUrl": "images/dosa.jpg"
+    },
+    "C5": {
+        "productName": "Nutella Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "5.99",
+        "description": "Tasty Dosa",
+        "code": "C5",
+        "imageUrl": "images/nutellaDosa.jpg"
+    },
+    "C6": {
+        "productName": "Masala Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "6.49",
+        "description": "Tasty Dosa",
+        "code": "C6",
+        "imageUrl": "images/dosa.jpg"
+    },
+    "C7": {
+        "productName": "Cheese Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "6.49",
+        "description": "Tasty Dosa",
+        "code": "C7",
+        "imageUrl": "images/cheeseDosa.jpg"
+    },
+    "C8": {
+        "productName": "Spicy  Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "6.49",
+        "description": "Tasty Dosa",
+        "code": "C8",
+        "imageUrl": "images/dosa.jpg"
+    },
+    "C9": {
+        "productName": "Spicy Masala Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "7.49",
+        "description": "Tasty Dosa",
+        "code": "C9",
+        "imageUrl": "images/dosa.jpg"
+    },
+    "C10": {
+        "productName": "Paneer Dosa",
+        "productType": "Crunchy, Craveable Chaat",
+        "price": "7.49",
+        "description": "Tasty Dosa",
+        "code": "C10",
+        "imageUrl": "images/dosa.jpg"
     }
 }
 var menuCategory = {   	
@@ -842,7 +986,9 @@ var menuCategory = {
             "Subs":["S1", "S2"],
                 "BreakFast":["BR1", "BR2", "BR3", "BR4"],
                   "Snacks": ["P1", "SA1", "FR1", "FRT1"],
-                  "Customized": ["BP","GF","OC","PC","SM","FL","BC"]
+                  "Customized": ["BP", "GF", "OC", "PC", "SM", "FL", "BC"],
+                  "Sandwiches": ["SW1", "SW2", "SW3", "SW4", "SW5", "SW6", "SW7", "SW8"],
+                  "Chaats":["C1","C2","C3","C4","C5","C6","C7","C8","C9","C10"]
 }
 var menuSuggestions = {
 

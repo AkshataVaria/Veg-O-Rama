@@ -1,6 +1,7 @@
 // JavaScript source code
 function displayItemDescription() {
     this.displaySelectedItemsFromCart();
+    getPricing();
     var response;
     var productType;
     var imgSrc;
@@ -67,6 +68,14 @@ function displayItemDescription() {
     }
 }
 
+//Delete each row,on click of delete icon
+function rowDelete(link) {
+    var row = link.parentNode;
+    var table = row.parentNode;
+    table.removeChild(row);
+}
+
+//Display items in cart on the right hand side
 function displaySelectedItemsFromCart() {
     //Since the user can select any number of items, creating the div's dynamically
 
@@ -76,7 +85,7 @@ function displaySelectedItemsFromCart() {
     if (result) {
         console.log(result);
         result.cartLine.forEach((item, rowNumber) => {
-            const newRow = document.getElementById('cartTable').appendChild(document.createElement('tr'));
+            const newRow = document.getElementById('cartTableContents').appendChild(document.createElement('tr'));
             const rowId = 'cartRow' + rowNumber;
             newRow.setAttribute('id', rowId);
             var code = item.code;
@@ -135,34 +144,11 @@ function displaySelectedItemsFromCart() {
             btnCancel.onclick = function () {
 
                 var rowId = newRow.id;
-                deleteCartItem(rowId, item.code)             
-
+                deleteCartItem(rowId, item.code)
+                rowDelete(this);
+                clearCartAndRerender();
             }
-
-           
-
         })
-
-        const totalprice = "$" + result.totalPrice
-        var divTotalPrice = document.createElement("div");
-        var textnodeTotalPrice = document.createTextNode(totalprice)
-        divTotalPrice.appendChild(textnodeTotalPrice);
-        document.getElementById('dvTotalPrice').appendChild(divTotalPrice);
-
-        const salestax = "$" + result.salesTax;
-        var divSalesTax = document.createElement("div");
-        var textnodeSalesTax = document.createTextNode(salestax)
-        dvSalesTax.appendChild(textnodeSalesTax);
-        document.getElementById('dvSalesTax').appendChild(divSalesTax);
-
-
-        const finalTotalprice = "$" + result.finalTotal;
-        var divFinalTotalPrice = document.createElement("div");
-        var textnodeTotalPrice = document.createTextNode(finalTotalprice)
-        divFinalTotalPrice.appendChild(textnodeTotalPrice);
-        document.getElementById('dvFinalTotalPrice').appendChild(divFinalTotalPrice);
-        divFinalTotalPrice.className = "fontBold"
-
     }
     else {
 
@@ -171,4 +157,35 @@ function displaySelectedItemsFromCart() {
     }
 
 
+}
+function clearCartAndRerender() {
+    $('#cartTableContents tr').remove(); /*Hacky fix*/
+    $('#cartPricing tr td div').html('');
+    displaySelectedItemsFromCart();
+    getPricing();
+}
+//Pricing options in separate table
+function getPricing() {
+    var response = sessionStorage.getItem("vegOramaCart");
+    var result = JSON.parse(response);
+    //Cartline is an array and will have multiple items, so looping through and fetching values from session to display inside div's.
+    if (result) {
+        const totalprice = "$" + result.totalPrice
+     //   var divTotalPrice = document.createElement("div");
+        var textnodeTotalPrice = document.createTextNode(totalprice)
+        var divTotalPrice = document.getElementById('dvTotalPrice')
+        divTotalPrice.appendChild(textnodeTotalPrice);
+       
+        const salestax = "$" + result.salesTax;   
+        var textnodeSalesTax = document.createTextNode(salestax)
+        divSalesTax = document.getElementById('dvSalesTax');       
+        divSalesTax.appendChild(textnodeSalesTax);
+
+
+        const finalTotalprice = "$" + result.finalTotal;   
+        var textnodeTotalPrice = document.createTextNode(finalTotalprice)        
+        divFinalTotalPrice = document.getElementById('dvFinalTotalPrice')
+        divFinalTotalPrice.appendChild(textnodeTotalPrice);
+        divFinalTotalPrice.className = "fontBold"
+    }
 }
