@@ -77,10 +77,7 @@
                     </tr>
 
                 </table>
-
-                <table  id="cartTableContents" class="cart">
-
-                </table>
+                <table id="cartTableContents" class="cart"></table>
                 <table id="cartPricing" style="width:100%;background-color: lightgray;">
                     <tr>
                         <td style="width:80%">Total Price</td>
@@ -97,13 +94,19 @@
                         <td><div id="dvFinalTotalPrice" style="text-align:right"></div></td>
                     </tr>
                 </table>
-
             </div>
 
-            <div id="dvProceedBtn" style="margin-right:3px;margin-top:10px">
-                <button onclick="navigate()" id="btnProceed">Proceed to check out </button>
-                <button id="btnCancel">Cancel </button>
+            <div style= "text-align:center; margin-top:10px">
+                <button  onclick="emptyBag()" id="btnBag">Empty bag </button>
+
             </div>
+            <div id="dvProceedBtn" style="margin-right:3px;margin-top:10px;text-align:left;">
+                <button onclick="navigate()" id="btnProceed" style="width:280px !important;">Check out </button>
+             
+            </div>
+
+
+
 
 
         </div>
@@ -176,9 +179,9 @@
                     <tr>
                         <td>  <label for="name"><b>Quantity:</b></label></td>
                         <td class="txtRightAlign">
-                            <input type="button" onclick="decrementValue()" value="-">
+                            <input type="button" onclick="decrementValue()" id="btnDecrement" value="-">
                             <input type="number" min="1" id="modalItemQty" value="1" />
-                            <input type="button" onclick="incrementValue()" value="+" />
+                            <input type="button" onclick="incrementValue()" value="+" id="btnIncrement"/>
                             <input type="hidden" id="modalItemCode">
                         </td>
                     </tr>
@@ -245,7 +248,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
+                            <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="82" id="txtNotes"></textarea>
                         </td>
                     </tr>
                     <tr>

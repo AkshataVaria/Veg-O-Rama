@@ -924,17 +924,17 @@ ul#navigation {
     font-weight:bold;
     font-style:italic;
 }
+#txtNotes {
+    border: 1px solid #c5c5c5;
+    border-radius: 4px;
+    resize: none;
+}
 .txtAlign {
     text-align: left;
 }
 .txtRightAlign{
     text-align:right;
 }
-/*.displayColumn {
-    display: flex;
-    flex-direction: row;
-    width: auto;
-}*/
 .cart
 {
     text-align:left !important;
@@ -954,6 +954,24 @@ ul#navigation {
 
 #cartPricing td {
     text-align: left !important;
+}
+#btnBag, #btnAddToBag, #btnProceed {
+    padding: 8px 0 8px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px;
+    color: white;
+    background: -moz-linear-gradient(top, #20abd0 0%, #1285b9 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#20abd0), color-stop(100%,#1285b9));
+    background: -webkit-linear-gradient(top, #20abd0 0%,#1285b9 100%);
+    background: -o-linear-gradient(top, #20abd0 0%,#1285b9 100%);
+    //background: -ms-linear-gradient(top, #20abd0 0%,#1285b9 100%);
+    background: linear-gradient(to bottom, #20abd0 0%,#1285b9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20abd0', endColorstr='#1285b9',GradientType=0 );
+    border: 1px solid #0887b1;
 }
 
 .navbar a {
@@ -977,8 +995,8 @@ ul#navigation {
     width: 100%;    
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    /*background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4);*/
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
    
 }
 
@@ -988,13 +1006,17 @@ ul#navigation {
     margin: auto;
     border: 1px solid #888;
     width: 41%;
-    height: 84%;
+    height: 58%;
     left: 0;
     top: 0;
     overflow-x: auto;
     overflow-y: auto;
-    font-size:12px;
+    font-size:14px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+    -webkit-border-radius: 10px ;
+    -moz-border-radius: 0px ;
+    border-radius: 10px ; 
 }
 #tblPopUp {
     width: 65%;
@@ -1009,15 +1031,31 @@ ul#navigation {
     border-bottom-color: gray;
 
 }
-#modalItemQty{
-	width:30px;
+#modalItemQty {
+ 
+    font-family: inherit;
+    font-size: 15px;
+    line-height: inherit;
+    width: 29px;
+    text-align: center;
+    border: 1px solid #c5c5c5;
+    border-radius: 5px;
 }
 #trPopupHeader {
-    background-color: green;
+ 
+    min-height: 24px;
+    padding: 0 20px;
+    position: relative;
     color: white;
-    display: row;
-    flex: grow;
+    font-size: 16px;
+    width: 100%;
+    background: #c02704;
+    border-radius: 10px 10px 0px 0px;
 }
+/*#btnDecrement {
+    background: url(../images/item/btn_minus.png) 0 0 no-repeat;
+}*/
+
 #divMenuImg {
     float: right;
     margin-top: 4%;
@@ -1026,8 +1064,7 @@ ul#navigation {
 
    
 #btnAddToBag{
-	background-color:green;
-	color: white;
+	
 	margin-top: 15px;
 	height:40px;  
     width:600px;

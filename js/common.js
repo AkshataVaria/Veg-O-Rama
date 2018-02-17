@@ -189,3 +189,8 @@ function getPricing() {
         divFinalTotalPrice.className = "fontBold"
     }
 }
+
+function emptyBag() {
+    $('#cartTableContents tr').remove(); /*Hacky fix*/
+    $('#cartPricing tr td div').html('');
+}
