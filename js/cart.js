@@ -45,13 +45,20 @@ function getItemCode(){
                 this.addToCart(code);
                 this.addToCart(secBurgerCode);
                 this.hideModal();
-                displaySelectedItemsFromCart();
+               // displaySelectedItemsFromCart();
             })
         }
         else {
 
         }
        
+      
+    } 
+    
+    else {// For all other items,except burger
+        this.addToCart(code);
+        this.hideModal();
+       // displaySelectedItemsFromCart();
       
     }
     var optionalItemCodes = getOptionalMenuItemCodes();
@@ -60,15 +67,8 @@ function getItemCode(){
             this.addToCart(code);
         })
 
-      
+
     }
-    else {// For all other items,except burger
-        this.addToCart(code);
-        this.hideModal();
-        displaySelectedItemsFromCart();
-      
-    }
-   
 }
 //Depending on what items user has checked, create an array and push those codes in array
 function getOptionalMenuItemCodes()
@@ -222,7 +222,7 @@ function deleteCartItem(rowId, code) {
     cartObj = JSON.parse(cartValue);
     for (i = 0; i < cartObj.cartLine.length; i++) {
         if (cartObj.cartLine[i].code == code) {
-            cartObj.cartLine.splice(cartObj.cartLine[i], 1);
+            cartObj.cartLine = cartObj.cartLine.splice(cartObj.cartLine[i], i);
             cartObj = calculateTotalPrice(cartObj);
 
         }
@@ -230,7 +230,7 @@ function deleteCartItem(rowId, code) {
             delete cartObj;
         }
     }
-    document.getElementById('cartTable').remove('rowId');
+
     var jsonStr = JSON.stringify(cartObj)
     sessionStorage.setItem("vegOramaCart", jsonStr);
     
