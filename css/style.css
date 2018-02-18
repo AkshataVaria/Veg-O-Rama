@@ -924,7 +924,7 @@ ul#navigation {
     font-weight:bold;
     font-style:italic;
 }
-#txtNotes {
+#txtNotes, #txtFirstComment {
     border: 1px solid #c5c5c5;
     border-radius: 4px;
     resize: none;
@@ -1031,12 +1031,18 @@ ul#navigation {
     border-bottom-color: gray;
 
 }
+.btnStyle
+{
+    width:10px;
+    border-radius:5px;
+  
+}
+
 #modalItemQty {
- 
     font-family: inherit;
     font-size: 15px;
     line-height: inherit;
-    width: 29px;
+    width: 27px;
     text-align: center;
     border: 1px solid #c5c5c5;
     border-radius: 5px;
@@ -1061,6 +1067,9 @@ ul#navigation {
     margin-top: 4%;
 }
 
+.tdWidth{
+    width:100%;
+}
 
    
 #btnAddToBag{
@@ -1071,10 +1080,12 @@ ul#navigation {
 }
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+  //  color: #aaaaaa;
     float: right;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
+    width:35px;
+    border-radius:5px;
 }
 
 .borderBottom{

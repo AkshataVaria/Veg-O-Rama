@@ -193,4 +193,10 @@ function getPricing() {
 function emptyBag() {
     $('#cartTableContents tr').remove(); /*Hacky fix*/
     $('#cartPricing tr td div').html('');
+    var response = sessionStorage.getItem("vegOramaCart");
+    var deleted = delete response;
+    sessionStorage.setItem("vegOramaCart", deleted);
+    sessionStorage.clear();
+    displaySelectedItemsFromCart();
+
 }

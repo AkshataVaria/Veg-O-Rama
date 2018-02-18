@@ -279,6 +279,18 @@ function generateHtmlForBurgerPopUp(code)
     generatePopUpHtmlForGenericItems(code); 
     var burgerAdd = document.getElementById('modalBurgerLine'); 
     burgerAdd.style.display = "block";
+
+    var burgerFirstExtra = document.getElementById('trBurgerFirst');
+    burgerFirstExtra.style.display = "block";
+
+    var burgerFirstCmtLbl = document.getElementById('trBurgerFirstCommentLabel');
+    burgerFirstCmtLbl.style.display = "block";
+
+    var burgerFirstComment = document.getElementById('trTxtFirstComment');
+    burgerFirstComment.style.display = "block";
+
+
+   
     var modal = document.getElementById('trBurgerItems');
     modal.style.display = "block";
     var modal1 = document.getElementById('trBurgerExtra');
