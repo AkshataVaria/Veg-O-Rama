@@ -20,7 +20,7 @@ var cart = {
 function displaySelectedItem(menuType) {
     var itemsArray = [];   
     if (menuCategory[menuType]) {
-        menuCategory[menuType].forEach(menuItemCode => {
+        menuCategory[menuType].forEach(function (menuItemCode)  {
             var item = menuCard[menuItemCode]
             itemsArray.push(item);
         })
@@ -42,7 +42,7 @@ function getItemCode(){
 
         }
         else if (getSecondBurger) {
-            getSecondBurger.forEach(secBurgerCode => {
+            getSecondBurger.forEach(function (secBurgerCode) {
                 this.addToCart(code);
                 this.addToCart(secBurgerCode);
                 this.hideModal();
@@ -64,7 +64,7 @@ function getItemCode(){
     }
     var optionalItemCodes = getOptionalMenuItemCodes();
     if (optionalItemCodes) {
-        optionalItemCodes.forEach(code => {
+        optionalItemCodes.forEach(function (code) {
             this.addToCart(code);
         })
 
@@ -318,6 +318,40 @@ function generatePopUpHtmlForGenericItems(code)
         else {
             document.getElementById('modalItemPrice').innerHTML = '$' + menuCard[code].price;
         }
+        //Not sure about implementation yet,so commented
+        //if (code == 'W1' || code == 'W2' || code == 'W3' || code == 'W4' || code == 'W5' || code == 'W6' || code =='W7') {
+        //    if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
+        //        var result = menuCard[code].extraOptions
+        //        if (result) {
+        //            const newRow = document.getElementById('tblPopUp').appendChild(document.createElement('tr'));
+        //            result.forEach((item, colNumber) => {                       
+        //                const column = newRow.appendChild(document.createElement('td'));
+                       
+        //                const colId = 'extraOptions' + colNumber;
+        //                column.setAttribute('id', colId);
+                    
+        //                var checkbox = document.createElement('input');
+        //                checkbox.type = "checkbox";
+        //                checkbox.name = "extraOptions";
+        //                checkbox.value = item.type;
+        //                checkbox.id = colId + item.type;
+        //                checkbox.style.width = "30px";
+        //                var label = document.createElement('label')
+        //                label.htmlFor = colId + item.type;
+                       
+        //                label.appendChild(document.createTextNode(item.type));
+        //                label.style.width = "30px";
+        //                column.appendChild(checkbox);
+        //                column.appendChild(label);
+                      
+        //                newRow.appendChild(column);
+        //                newRow.className = "ExtraStyle";
+                      
+        //            })
+        //        }
+                
+        //    }
+        //}
           
         
     }

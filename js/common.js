@@ -81,10 +81,11 @@ function displaySelectedItemsFromCart() {
 
     var response = sessionStorage.getItem("vegOramaCart");
     var result = JSON.parse(response);
+
     //Cartline is an array and will have multiple items, so looping through and fetching values from session to display inside div's.
     if (result) {
         console.log(result);
-        result.cartLine.forEach((item, rowNumber) => {
+        result.cartLine.forEach(function (item, rowNumber) {
             const newRow = document.getElementById('cartTableContents').appendChild(document.createElement('tr'));
             const rowId = 'cartRow' + rowNumber;
             newRow.setAttribute('id', rowId);
