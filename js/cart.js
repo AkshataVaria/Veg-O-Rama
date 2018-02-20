@@ -104,8 +104,7 @@ function getOptionalMenuItemCodes()
 
 //Add items to cart depending on the code
 function addToCart(code){	   
-    if(menuCard[code]){
-       
+    if(menuCard[code]){       
    var cartLine = new Object();        
     cartLine.code = code;
     cartLine.productName = menuCard[code].productName;
@@ -124,7 +123,7 @@ function addToCart(code){
 				var found = false;
 				for (i = 0; i < cartObj.cartLine.length && found == false; i++) {
 					if(cartObj.cartLine[i].code == code){
-                        cartObj.cartLine[i].qty = document.getElementById('modalItemQty').value
+                        cartObj.cartLine[i].qty = parseInt(cartObj.cartLine[i].qty) + parseInt(document.getElementById('modalItemQty').value);
                         cartObj.cartLine[i].notes = document.getElementById('txtNotes').value
 						found = true; 
 					}
@@ -147,6 +146,7 @@ function addToCart(code){
 			cartObj = calculateTotalPrice(cartObj);
 			var jsonStr = JSON.stringify( cartObj );
             sessionStorage.setItem("vegOramaCart", jsonStr);
+            $('#dvShowNoitems').innerHTML = " ";
           
           
            
@@ -307,7 +307,7 @@ function generatePopUpHtmlForGenericItems(code)
     if (menuCard[code]) {
       
 
-        document.getElementById('modalItemName').innerHTML  = menuCard[code].productName;
+        document.getElementById('modalItemName').innerHTML  = code +"."+ menuCard[code].productName;
         document.getElementById('modalItemDesc').innerHTML = menuCard[code].description;
         document.getElementById('modalItemCode').innerHTML = code;   
         if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
@@ -371,19 +371,36 @@ function hideModal(){
 
 function incrementValue()
 {
+    var originalPrice;
+    var result;
     var value = parseInt(document.getElementById('modalItemQty').value, 10);
     value = isNaN(value) ? 0 : value;
     value++;
     document.getElementById('modalItemQty').value = value;
+    var itemName = document.getElementById('modalItemName').innerText; //Get the original price based on the code of item name in the header
+    var code = itemName.split('.')[0]
+    originalPrice = menuCard[code].price;
+    result = (originalPrice * value).toFixed(2); 
+    setCurrentPrice(result);
+    setPriceAddToBagBtn();
 }
 function decrementValue()
 {
+    var currentPrice;
     var value = parseInt(document.getElementById('modalItemQty').value, 10);
     value = isNaN(value) ? 0 : value;
 	if(value!=1){
-		value--;
+        value--;
+        document.getElementById('modalItemQty').value = value;
+        var itemName = document.getElementById('modalItemName').innerText;
+        var code = itemName.split('.')[0]
+        originalPrice = menuCard[code].price;
+        currentPrice = getCurrentItemPrice();
+        result = (currentPrice - originalPrice).toFixed(2);
+        setCurrentPrice(result);
+        setPriceAddToBagBtn();
 	}
-    document.getElementById('modalItemQty').value = value;
+   
 }
 
 function calculateBowlPrice(element) {
