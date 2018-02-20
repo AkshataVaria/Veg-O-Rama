@@ -110,7 +110,7 @@ function addToCart(code){
     cartLine.productName = menuCard[code].productName;
     cartLine.productType = menuCard[code].productType;
     cartLine.qty = document.getElementById('modalItemQty').value;
-    cartLine.price = menuCard[code].price;
+    cartLine.price = menuCard[code].price * cartLine.qty;
     cartLine.notes = document.getElementById('txtNotes').value;
     var cartObj ;         
      
