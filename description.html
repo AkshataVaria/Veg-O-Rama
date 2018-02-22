@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <!-- Website template by freewebsitetemplates.com -->
 <head>
-    <title>Decsription</title>
+    <title>Description</title>
     <meta charset="utf-8">
     <script src="js/cart.js"></script>
     <script src="js/common.js"></script>
@@ -39,7 +39,20 @@
             </div>
         </div>
     </div>
-    <div id="body" style="background-color:white !important">
+    <div id="body" style="background-color:white !important; margin-right:10%;">
+
+                    <div class="left" style=" position:absolute; left:0; top:250px; bottom: 4; width: 172px; border-style:solid;border-color:gray; background-color: lightgray;margin-left:2%;font-size: 16px;">
+					<a href="description.html?value=Burger">BURGER</a><br>
+					<a href="description.html?value=Subs">SPECIALITY SUBS</a>
+					<a href="description.html?value=Wraps">WRAPS|PIZZAS|BOWLS</a>
+					<a href="description.html?value=BreakFast">BREAKFAST</a>
+					<a href="description.html?value=Snacks">SOUPS|SALADS|SIDES</a>
+					<a href="description.html?value=Sandwiches">SANDWICHES</a>
+					<a href="description.html?value=Chaats">CRUNCHY CHAATS</a>
+					<a href="description.html?value=Smoothies">NATURAL SMOOTHIES</a>
+					<a href="description.html?value=Drinks">DRINKS|TEAS</a><BR>
+					<a href="description.html?value=Tooth">SWEET TOOTH</a>
+					</div>
 
         <div class="content" style="background:none !important">
             <table id="tblDescription" class="tblDesc" style="border-style:solid;border-color:gray;">
@@ -163,7 +176,7 @@
                         <td class="fontBold">Choose any 2 burger's for $5.49</td>
                     </tr>
                     <tr>
-                        <td class="tdWidth" colspan="2" id="modalItemDesc">   </td>
+                        <td class ="tdWidth" colspan="2" id="modalItemDesc">   </td>
                     </tr>
                     <tr>
                         <td> <b>Price:</b> </td>
@@ -194,25 +207,25 @@
                         </td>
                     </tr>
                     <tr id="trBurgerItems" style="display:none;background-color:lightgray">
-                        <td>
-                            <div>
-                                <b>*Choose second burger:</b>
-                                <div>Required choose 2nd  </div>
-                                <div class="paddingBurger">
-                                    <input type="radio" name="rdBurgerType" id="B1" value="2.50" required>Peanut Crusted Cajun Blackbean Burger
-                                    <input type="radio" name="rdBurgerType" id="B2" value="2.50" required>Mean Green Protein Pea Burger
-                                </div>
-                                <div class="paddingBurger">
-                                    <input type="radio" name="rdBurgerType" id="B3" value="2.00" required>Golden Crunchy Potato Burger
-                                    <input type="radio" name="rdBurgerType" id="B4" value="2.00" required>The Love Seed Beet Them All Burger
-                                </div>
-                                <div class="paddingBurger">
-                                    <input type="radio" name="rdBurgerType" id="B5" value="2.50" required>Golden Crunchy Bird's Nest Burger
-                                    <input type="radio" name="rdBurgerType" id="B6" value="2.50" required>Peanut Crusted Blackbean Burger
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+        <td>
+            <div>
+                <b>*Choose second burger:</b>
+                <div>Required choose 2nd  </div>
+                <div class="paddingBurger">
+                    <input type="radio" name="rdBurgerType" id="B1" value="2.50" required>Peanut Crusted Cajun Blackbean Burger
+                    <input type="radio" name="rdBurgerType" id="B2" value="2.50" required>Mean Green Protein Pea Burger
+                </div>
+                <div class="paddingBurger">
+                    <input type="radio" name="rdBurgerType" id="B3" value="2.00" required>Golden Crunchy Potato Burger
+                    <input type="radio" name="rdBurgerType" id="B4" value="2.00" required>The Love Seed Beet Them All Burger
+                </div>
+                <div class="paddingBurger">
+                    <input type="radio" name="rdBurgerType" id="B5" value="2.50" required>Golden Crunchy Bird's Nest Burger
+                    <input type="radio" name="rdBurgerType" id="B6" value="2.50" required>Peanut Crusted Blackbean Burger
+                </div>
+            </div>
+        </td>
+    </tr>
                     <tr id="trBurgerExtra" style="display:none">
                         <td>
                             <b> Choose extras as you'd like:</b><br />
@@ -241,29 +254,6 @@
                             <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
                         </td>
                     </tr>
-                    <!--<tr>
-
-                        <td>
-                            <b> Add more items?: </b><br />
-                            <input type="checkbox" name="typeExtra" id="chkPopper" value="3.49" onchange="addExtraCharges(this)"><label>Chickpeas + $3.49</label>
-                            <input type="checkbox" name="typeExtra" id="chkSamosa" value="2.99" onchange="addExtraCharges(this)"><label>Corn + $2.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Black bean + $2.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>Lettuce + $3.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkPopper" value="3.49" onchange="addExtraCharges(this)"><label>Jalapeno + $3.49</label>
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>
-
-                          
-                            <input type="checkbox" name="typeExtra" id="chkSamosa" value="2.99" onchange="addExtraCharges(this)"><label>Banana pepper + $2.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Sour cream + $2.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>Pickle + $3.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Cabbage + $2.99</label>
-                            <input type="checkbox" name="typeExtra" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>Tomato + $3.99</label>
-                        </td>
-                    </tr>-->
                     <tr>
                         <td colspan="2">
                             <b> Complete your meal: </b><br>
@@ -271,9 +261,6 @@
                             <input type="checkbox" name="typeOfAddOn" id="chkSamosa" value="2.99" onchange="addExtraCharges(this)"><label>2 Classic Samosa + $2.99</label><br />
                             <input type="checkbox" name="typeOfAddOn" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Famous Masala Fries + $2.99</label><br />
                             <input type="checkbox" name="typeOfAddOn" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>8 Crispy Pakora Fritters + $3.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkLemonade" value="1.99" onchange="addExtraCharges(this)"><label>Lemonade + $1.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkLassi" value="2.99" onchange="addExtraCharges(this)"><label>Lassi + $2.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkSmoothie" value="4.99" onchange="addExtraCharges(this)"><label>Smoothies+ $4.99</label><br />
                         </td>
                     </tr>
 
