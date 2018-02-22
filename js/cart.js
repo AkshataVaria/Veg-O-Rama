@@ -33,7 +33,12 @@ function displaySelectedItem(menuType) {
 
 //After clicking Add to cart from pop up, fetch the menu item code, and other item code if any and call AddtoCart function
 function getItemCode(){
-    var code = document.getElementById('modalItemCode').innerText;  //If burger,get second burger by code and call AddtoCart
+    var code = document.getElementById('modalItemCode').innerText;
+    var optionalItemCodes = getOptionalMenuItemCodes();
+    if (optionalItemCodes) {
+        optionalItemCodes.forEach(function (code) {
+            this.addToCart(code);
+        })//If burger,get second burger by code and call AddtoCart
     if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
         //If user has not selected second burger,dont let them submit
         var getSecondBurger = addSecondBurgerPrice();
@@ -62,13 +67,6 @@ function getItemCode(){
        
       
     }
-    var optionalItemCodes = getOptionalMenuItemCodes();
-    if (optionalItemCodes) {
-        optionalItemCodes.forEach(function (code) {
-            this.addToCart(code);
-        })
-
-
     }
     clearCartAndRerender();
 
@@ -95,6 +93,15 @@ function getOptionalMenuItemCodes()
                  else if(checkboxes[i].id =="chkFritters"){
                     optionalMenuItems.push("FRT1")
                  }
+                   else if (checkboxes[i].id == "chkLassi") {
+                       optionalMenuItems.push("LA")
+                 }
+                   else if (checkboxes[i].id == "chkLemonade") {
+                       optionalMenuItems.push("LM")
+                 }
+                   else if (checkboxes[i].id == "chkSmoothie") {
+                       optionalMenuItems.push("SMT")
+                   }
                } 
      
      }
@@ -146,7 +153,7 @@ function addToCart(code){
 			cartObj = calculateTotalPrice(cartObj);
 			var jsonStr = JSON.stringify( cartObj );
             sessionStorage.setItem("vegOramaCart", jsonStr);
-            $('#dvShowNoitems').innerHTML = " ";
+            $('#dvShowNoitems').html('');
           
           
            
@@ -255,6 +262,11 @@ function openPopUp(code) {
     {   
        generateHtmlCustomizedItems(code);
     }
+    else if (code == 'W1' || code == 'W2' || code == 'W3' || code == 'W4' || code == 'W5' || code == 'W6' || code == 'W7') {
+        generateHtmlCustomizedItems(code);
+
+
+    }
     else
     {
         generatePopUpHtmlForGenericItems(code);
@@ -273,6 +285,41 @@ function generateHtmlCustomizedItems(code)
    
     var modal1 = document.getElementById('trCustomExtra');
     modal1.style.display = "block";
+    
+        
+            //if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
+            //    var result = menuCard[code].extraOptions
+            //    if (result) {
+            //        const newRow = document.getElementById('tblPopUp').appendChild(document.createElement('tr'));
+            //        result.forEach((item, colNumber) => {                       
+            //            const column = newRow.appendChild(document.createElement('td'));
+
+            //            const colId = 'extraOptions' + colNumber;
+            //            column.setAttribute('id', colId);
+
+            //            var checkbox = document.createElement('input');
+            //            checkbox.type = "checkbox";
+            //            checkbox.name = "extraOptions";
+            //            checkbox.value = item.type;
+            //            checkbox.id = colId + item.type;
+            //            checkbox.style.width = "30px";
+            //            var label = document.createElement('label')
+            //            label.htmlFor = colId + item.type;
+
+            //            label.appendChild(document.createTextNode(item.type));
+            //            label.style.width = "30px";
+            //            column.appendChild(checkbox);
+            //            column.appendChild(label);
+
+            //            newRow.appendChild(column);
+            //            newRow.className = "ExtraStyle";
+
+            //        })
+            //    }
+
+            //}
+        
+
 }
 function generateHtmlForBurgerPopUp(code)
 {
@@ -318,41 +365,7 @@ function generatePopUpHtmlForGenericItems(code)
         else {
             document.getElementById('modalItemPrice').innerHTML = '$' + menuCard[code].price;
         }
-        //Not sure about implementation yet,so commented
-        //if (code == 'W1' || code == 'W2' || code == 'W3' || code == 'W4' || code == 'W5' || code == 'W6' || code =='W7') {
-        //    if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
-        //        var result = menuCard[code].extraOptions
-        //        if (result) {
-        //            const newRow = document.getElementById('tblPopUp').appendChild(document.createElement('tr'));
-        //            result.forEach((item, colNumber) => {                       
-        //                const column = newRow.appendChild(document.createElement('td'));
-                       
-        //                const colId = 'extraOptions' + colNumber;
-        //                column.setAttribute('id', colId);
-                    
-        //                var checkbox = document.createElement('input');
-        //                checkbox.type = "checkbox";
-        //                checkbox.name = "extraOptions";
-        //                checkbox.value = item.type;
-        //                checkbox.id = colId + item.type;
-        //                checkbox.style.width = "30px";
-        //                var label = document.createElement('label')
-        //                label.htmlFor = colId + item.type;
-                       
-        //                label.appendChild(document.createTextNode(item.type));
-        //                label.style.width = "30px";
-        //                column.appendChild(checkbox);
-        //                column.appendChild(label);
-                      
-        //                newRow.appendChild(column);
-        //                newRow.className = "ExtraStyle";
-                      
-        //            })
-        //        }
-                
-        //    }
-        //}
-          
+        
         
     }
     setPriceAddToBagBtn();
@@ -366,7 +379,9 @@ function setPriceAddToBagBtn()
 }
 function hideModal(){
 	var modal = document.getElementById('myModal');
-	 modal.style.display = "none";
+    modal.style.display = "none";
+    $("#myModal").find('input:radio, input:checkbox').prop('checked', false);
+    document.getElementById('modalItemQty').value = 1;;
 }
 
 function incrementValue()

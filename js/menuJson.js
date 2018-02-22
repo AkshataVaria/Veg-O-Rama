@@ -95,10 +95,10 @@ var menuCard = {
                                         ]
     },
     "B6": {
-        "productName": "Tamarind BBQ Jackfruit Sandwich",
+        "productName": "Sweet and Tangy burger",
             "productType": "Burger",
                 "price": "2.50",
-                    "description": "Never had jackfruit",
+                    "description": "This burger is sweet and tangy",
                         "code": "B6",
                             "imageUrl": "images/burger.jpg",
                                 "isCustomizable": true,
@@ -777,6 +777,30 @@ var menuCard = {
                     "description": "Snack",
                         "code": "FRT1",
                             "imageUrl": "images/breakfast2.jpg"
+    },
+    "LM": {
+        "productName": "Lemonade",
+        "productType": "Optional",
+        "price": "1.99",
+        "description": "Drink",
+        "code": "LM",
+        "imageUrl": "images/breakfast2.jpg"
+    },
+    "LA": {
+        "productName": "Lassi",
+        "productType": "Optional",
+        "price": "2.99",
+        "description": "Drink",
+        "code": "LA",
+        "imageUrl": "images/breakfast2.jpg"
+    },
+    "SMT": {
+        "productName": "Smoothie",
+        "productType": "Optional",
+        "price": "4.99",
+        "description": "Drink",
+        "code": "SMT",
+        "imageUrl": "images/breakfast2.jpg"
     },
     'BP': {
         'productName': 'Butter Paneer',
