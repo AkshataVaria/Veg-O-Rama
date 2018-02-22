@@ -267,6 +267,11 @@ function openPopUp(code) {
 
 
     }
+    else if (code == 'S1' || code == 'S2') {
+        generatePopUpHtmlForGenericItems(code);
+        var vegGluten = document.getElementById('trBurgerExtra');
+        vegGluten.style.display = "block";
+    }
     else
     {
         generatePopUpHtmlForGenericItems(code);
@@ -280,6 +285,9 @@ function openPopUp(code) {
 function generateHtmlCustomizedItems(code)
 {
     generatePopUpHtmlForGenericItems(code);    
+    
+    var vegGluten = document.getElementById('trBurgerExtra');
+    vegGluten.style.display = "block";
     var modal = document.getElementById('trCustomStyle');
     modal.style.display = "block";
    
