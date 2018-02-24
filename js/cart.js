@@ -1,12 +1,12 @@
-var cartLine  = {
-	productName : '',
-	code: '',
-	productType: '',
-	qty :0,
-	price : 0.0,
-    notes :''
+var cartLine = {
+    productName: '',
+    code: '',
+    productType: '',
+    qty: 0, price: 0.0,
+    notes: '',
+    customOptions: { isVegan: 'n', isGF: 'n' },
+    extraOptions: []
 }
-
 var cart = {
 	cartLine:[],
 	totalPrice: 0.0,
@@ -16,7 +16,7 @@ var cart = {
     totalQuantity: 0.0
 }
 
-//This singlr function is alone responsible for display images,item name and description based on menu type
+//This single function is alone responsible for display images,item name and description based on menu type
 function displaySelectedItem(menuType) {
     var itemsArray = [];   
     if (menuCategory[menuType]) {
@@ -45,11 +45,9 @@ function getItemCode(){
             alert("Choose secoond burger");
 
         }
-        else if (secondBurger) {          
-                this.addToCart(code);
-                this.addToCart(secondBurger);             
-                this.hideModal();
-              //  this.clearBurgerCart()
+        else if (secondBurger) {                   
+            this.addToCart("BG2");                         
+            this.hideModal();              
                
         }
         else {
@@ -77,34 +75,12 @@ function clearBurgerCart() {
 function getOptionalMenuItemCodes()
 {
     var optionalMenuItems = [];
-    var checkboxes = document.getElementsByName('typeOfAddOn');    
-  
+    var checkboxes = document.getElementsByName('typeOfAddOn');      
      for (let i = 0; i < checkboxes.length; i++)
       {
-             if (checkboxes[i].checked)
-               {
-                   if(checkboxes[i].id=="chkPopper"){
-                      optionalMenuItems.push("P1");
-                   }
-                   else if(checkboxes[i].id =="chkSamosa"){
-                      optionalMenuItems.push("SA1")
-                   }
-                   else if(checkboxes[i].id =="chkFries"){
-                    optionalMenuItems.push("FR1")
-                 }
-                 else if(checkboxes[i].id =="chkFritters"){
-                    optionalMenuItems.push("FRT1")
-                 }
-                   else if (checkboxes[i].id == "chkLassi") {
-                       optionalMenuItems.push("LA")
-                 }
-                   else if (checkboxes[i].id == "chkLemonade") {
-                       optionalMenuItems.push("LM")
-                 }
-                   else if (checkboxes[i].id == "chkSmoothie") {
-                       optionalMenuItems.push("SMT")
-                   }
-               } 
+         if (checkboxes[i].checked) {
+             optionalMenuItems.push(checkboxes[i].id);
+         }
      
      }
      return optionalMenuItems;
@@ -112,18 +88,28 @@ function getOptionalMenuItemCodes()
 
 
 //Add items to cart depending on the code
-function addToCart(code){	   
-    if(menuCard[code]){       
+function addToCart(code) {	 
+    debugger;
+   if (menuCard[code]) {       
    var cartLine = new Object();        
-    cartLine.code = code;
-    cartLine.productName = menuCard[code].productName;
-    cartLine.productType = menuCard[code].productType;
-    cartLine.qty = document.getElementById('modalItemQty').value;
-    cartLine.price = menuCard[code].price * cartLine.qty;
-    cartLine.notes = document.getElementById('txtNotes').value;
-    var cartObj ;         
-     
-   
+   cartLine.code = code;
+   cartLine.productType = menuCard[code].productType;
+   cartLine.qty = document.getElementById('modalItemQty').value;
+   cartLine.notes = document.getElementById('txtNotes').value;
+   if (code == "BG2")
+   {
+       var burgerCode1 = document.getElementById('modalItemCode').innerText;
+       var burgerCode2 = addSecondBurgerPrice()
+       cartLine.productName ="*"+ menuCard[burgerCode1].productName +"*"+ menuCard[burgerCode2].productName;
+       cartLine.price = menuCard[code].price * cartLine.qty;
+   }  
+   else
+   {
+       cartLine.productName = menuCard[code].productName;
+       cartLine.price = menuCard[code].price * cartLine.qty;
+          
+   }
+   var cartObj ;        
 		if(typeof(Storage) !== "undefined") {
 			if (sessionStorage.getItem( "vegOramaCart" )) {
 				// cart already exists in the memory
@@ -132,8 +118,9 @@ function addToCart(code){
 				var found = false;
 				for (i = 0; i < cartObj.cartLine.length && found == false; i++) {
 					if(cartObj.cartLine[i].code == code){
-                        cartObj.cartLine[i].qty = parseInt(cartObj.cartLine[i].qty) + parseInt(document.getElementById('modalItemQty').value);
-                        cartObj.cartLine[i].notes = document.getElementById('txtNotes').value
+                        cartObj.cartLine[i].qty = parseInt(document.getElementById('modalItemQty').value);
+                        cartObj.cartLine[i].notes = document.getElementById('txtNotes').value;
+                      
 						found = true; 
 					}
 				}
@@ -256,28 +243,34 @@ function openPopUp(code) {
    
     if(code == 'B1' || code=='B2'|| code == 'B3' || code=='B4' || code=='B5'||code=='B6')
     {   
-
        generateHtmlForBurgerPopUp(code);
-        
+       var menuCategory = "Burgers";
+       renderCompleteMealOptions(menuCategory);
+
     }
     else if (code == 'BP' || code == 'GF' || code == 'OC' || code=='PC'||code=='SM'|| code =='FL' || code=='BC')
     {   
-       generateHtmlCustomizedItems(code);
+        generateHtmlCustomizedItems(code);
+        var menuCategory = "Customized";
+        renderCompleteMealOptions(menuCategory);
     }
     else if (code == 'W1' || code == 'W2' || code == 'W3' || code == 'W4' || code == 'W5' || code == 'W6' || code == 'W7') {
         generateHtmlCustomizedItems(code);
-
-
+        var menuCategory ="Wraps"
+        renderCompleteMealOptions(menuCategory);
     }
     else if (code == 'S1' || code == 'S2') {
         generatePopUpHtmlForGenericItems(code);
         var vegGluten = document.getElementById('trBurgerExtra');
         vegGluten.style.display = "block";
+        var menuCategory = "Bowls";
+        renderCompleteMealOptions(menuCategory);
     }
     else
     {
         generatePopUpHtmlForGenericItems(code);
-       
+        var menuCategory = "Common";
+        renderCompleteMealOptions(menuCategory);
     }
   
     
@@ -295,8 +288,7 @@ function generateHtmlCustomizedItems(code)
    
     var modal1 = document.getElementById('trCustomExtra');
     modal1.style.display = "block";
-    
-        
+
             //if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
             //    var result = menuCard[code].extraOptions
             //    if (result) {
@@ -333,6 +325,7 @@ function generateHtmlCustomizedItems(code)
 }
 function generateHtmlForBurgerPopUp(code)
 {
+    debugger;
     generatePopUpHtmlForGenericItems(code); 
     var burgerAdd = document.getElementById('modalBurgerLine'); 
     burgerAdd.style.display = "block";
@@ -352,9 +345,49 @@ function generateHtmlForBurgerPopUp(code)
     modal.style.display = "block";
     var modal1 = document.getElementById('trBurgerExtra');
     modal1.style.display = "block";
-    
+
+  
 
     
+}
+
+function renderCompleteMealOptions(menuCategory)
+{
+    if (menuSuggestions[menuCategory]) {
+        
+        menuSuggestions[menuCategory].forEach(function (menuItemCode, rowNumber) {
+            if (menuCard[menuItemCode]) {
+               
+                const newRow = document.createElement('tr');
+                $("#tblPopUp tr:last").after(newRow);                          
+                const rowId = 'typeOfAddOn' + rowNumber;
+                newRow.setAttribute('id', rowId);
+
+                var checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+                checkbox.name = "typeOfAddOn";
+                checkbox.value = menuCard[menuItemCode].price;
+                checkbox.id =  menuCard[menuItemCode].code;
+            
+               
+                var label = document.createElement('label')
+                label.htmlFor = rowId + menuCard[menuItemCode].productName;
+                var labelText = menuCard[menuItemCode].productName +" "+  "+" + " "+ "$" + menuCard[menuItemCode].price
+                label.appendChild(document.createTextNode(labelText));
+                label.style.width = "120px";
+                
+                newRow.appendChild(checkbox);
+                checkbox.setAttribute("onchange", "addExtraCharges(this)");
+                newRow.appendChild(label);
+                newRow.className = "ExtraStyle";
+               
+
+            }
+
+
+        })
+    }
+
 }
 function generatePopUpHtmlForGenericItems(code)
 {
@@ -458,6 +491,7 @@ function getCurrentItemPrice() {
 }
 function addExtraCharges(element)
 {
+   
     var currentPrice;
     if (element.checked) {
 

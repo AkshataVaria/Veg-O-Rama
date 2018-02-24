@@ -278,33 +278,24 @@
                             <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2">
-                            <b> Complete your meal: </b><br>
-                            <input type="checkbox" name="typeOfAddOn" id="chkPopper" value="3.49" onchange="addExtraCharges(this)"><label>8 Jalepeno Poppers + $3.49</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkSamosa" value="2.99" onchange="addExtraCharges(this)"><label>2 Classic Samosa + $2.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Famous Masala Fries + $2.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>8 Crispy Pakora Fritters + $3.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkLemonade" value="1.99" onchange="addExtraCharges(this)"><label>Lemonade + $1.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkLassi" value="2.99" onchange="addExtraCharges(this)"><label>Lassi + $2.99</label><br />
-                            <input type="checkbox" name="typeOfAddOn" id="chkSmoothie" value="4.99" onchange="addExtraCharges(this)"><label>Smoothies+ $4.99</label><br />
-                        </td>
-                    </tr>
 
-                    <tr>
+                    <tr id="trSpclInstructions">
                         <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
 
                     </tr>
-                    <tr>
+                    <tr id="txtSpcl">
                         <td colspan="2">
                             <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="2"> <input id="btnAddToBag" type="button" value="Add to bag:" onclick="getItemCode()"> </td>
-                    </tr>
+                 
 
                 </table>
+                <span>
+                    
+                   <input id="btnAddToBag" type="button" value="Add to bag:" onclick="getItemCode()"> 
+
+                </span>
             </form>
          
 

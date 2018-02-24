@@ -1026,11 +1026,11 @@ ul#navigation {
     border-bottom-color: gray;
     float: left;
 }
-#tblPopUp tr{	
+/*#tblPopUp tr{	
 	border-bottom: dotted 1px;
     border-bottom-color: gray;
 
-}
+}*/
 .btnStyle
 {
     width:10px;
@@ -1081,7 +1081,7 @@ ul#navigation {
 	
 	margin-top: 15px;
 	height:40px;  
-    width:600px;
+    width:530px;
 }
 /* The Close Button */
 .close {

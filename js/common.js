@@ -75,75 +75,75 @@ function rowDelete(link) {
     table.removeChild(row);
 }
 
-//function generateBurgerCartHtml() {
+function generateBurgerCartHtml() {
    
-//    var itemName = document.getElementById('modalItemName').innerText; //Get the original price based on the code of item name in the header
-//    var burgerCode1 = itemName.split('.')[0]
-//    console.log(burgerCode1);
-//    var burgerCode2 = addSecondBurgerPrice();
-//    console.log(burgerCode2);
-//    const newRow = document.getElementById('cartTableContents').appendChild(document.createElement('tr'));
-//    const rowId = 'cartRow' + Math.random();
-//    newRow.setAttribute('id', rowId);
+    var itemName = document.getElementById('modalItemName').innerText; //Get the original price based on the code of item name in the header
+    var burgerCode1 = itemName.split('.')[0]
+    console.log(burgerCode1);
+    var burgerCode2 = addSecondBurgerPrice();
+    console.log(burgerCode2);
+    const newRow = document.getElementById('cartTableContents').appendChild(document.createElement('tr'));
+    const rowId = 'cartRow' + Math.random();
+    newRow.setAttribute('id', rowId);
 
-//    var btnMinus = document.createElement("img");
-//    btnMinus.src = "images/edit1.jpg";
-//    btnMinus.style.width = "15px"
-//    btnMinus.style.height = "18px";
-//    newRow.appendChild(btnMinus);
+    var btnMinus = document.createElement("img");
+    btnMinus.src = "images/edit1.jpg";
+    btnMinus.style.width = "15px"
+    btnMinus.style.height = "18px";
+    newRow.appendChild(btnMinus);
 
-//    btnMinus.onclick = function () {
-//        openPopUp(burgerCode1);
+    btnMinus.onclick = function () {
+        openPopUp(burgerCode1);
 
-//    };
-//    const productName = "*" + burgerCode1 + "." + menuCard[burgerCode1].productName;
-//    var divProductName = document.createElement("div");
-//    var textnode = document.createTextNode(productName)
-//    divProductName.appendChild(textnode);
-//    divProductName.appendChild(document.createElement("br"));
-//    const productName2 ="*"+ burgerCode2 + "." + menuCard[burgerCode2].productName;
+    };
+    const productName = "*" + burgerCode1 + "." + menuCard[burgerCode1].productName;
+    var divProductName = document.createElement("div");
+    var textnode = document.createTextNode(productName)
+    divProductName.appendChild(textnode);
+    divProductName.appendChild(document.createElement("br"));
+    const productName2 ="*"+ burgerCode2 + "." + menuCard[burgerCode2].productName;
   
-//    var textnode2 = document.createTextNode(productName2)
-//    divProductName.appendChild(textnode2);
+    var textnode2 = document.createTextNode(productName2)
+    divProductName.appendChild(textnode2);
 
    
 
-//    newRow.appendChild(divProductName)
-//    divProductName.style.width = "60%";
+    newRow.appendChild(divProductName)
+    divProductName.style.width = "60%";
 
-//    const quantity = document.getElementById('modalItemQty').value;
-//    var divQty = document.createElement("div");
-//    var textnodeQty = document.createTextNode(quantity);
-//    divQty.appendChild(textnodeQty);
-//    newRow.appendChild(divQty)
-//    divQty.style.width = "20%"
-//    divQty.style.textAlign = "left";
+    const quantity = document.getElementById('modalItemQty').value;
+    var divQty = document.createElement("div");
+    var textnodeQty = document.createTextNode(quantity);
+    divQty.appendChild(textnodeQty);
+    newRow.appendChild(divQty)
+    divQty.style.width = "20%"
+    divQty.style.textAlign = "left";
 
   
-//    const price = "$" + menuCard[burgerCode1].price;
-//    var divPrice = document.createElement("div");
-//    var textnodePrice = document.createTextNode(price)
-//    divPrice.appendChild(textnodePrice);
-//    newRow.appendChild(divPrice)
-//    divPrice.style.width = "20%";
-//    divQty.style.textAlign = "center";
+    const price = "$" + menuCard[burgerCode1].price;
+    var divPrice = document.createElement("div");
+    var textnodePrice = document.createTextNode(price)
+    divPrice.appendChild(textnodePrice);
+    newRow.appendChild(divPrice)
+    divPrice.style.width = "20%";
+    divQty.style.textAlign = "center";
 
-//    var btnCancel = document.createElement("img");
-//    btnCancel.src = "images/DeleteNew.jpg";
-//    btnCancel.style.width = "10%"
-//    btnCancel.style.height = "25px";
+    var btnCancel = document.createElement("img");
+    btnCancel.src = "images/DeleteNew.jpg";
+    btnCancel.style.width = "10%"
+    btnCancel.style.height = "25px";
 
-//    newRow.appendChild(btnCancel);
-//    btnCancel.style.borderRadius = "8px";
+    newRow.appendChild(btnCancel);
+    btnCancel.style.borderRadius = "8px";
 
-//    btnCancel.onclick = function () {
+    btnCancel.onclick = function () {
 
-//        var rowId = newRow.id;
-//        deleteCartItem(rowId, item.code)
-//        rowDelete(this);
-//        clearCartAndRerender();
-//    }
-//}
+        var rowId = newRow.id;
+        deleteCartItem(rowId, item.code)
+        rowDelete(this);
+        clearCartAndRerender();
+    }
+}
 //Display items in cart on the right hand side
 
 function displaySelectedItemsFromCart() {
@@ -195,7 +195,7 @@ function displaySelectedItemsFromCart() {
             divQty.style.width = "20%"
             divQty.style.textAlign = "left";
 
-            const price = "$" + item.price;
+            const price = "$" + item.price * item.qty;
             var divPrice = document.createElement("div");
             var textnodePrice = document.createTextNode(price)
             divPrice.appendChild(textnodePrice);
