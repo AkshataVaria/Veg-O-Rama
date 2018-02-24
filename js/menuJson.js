@@ -2,7 +2,7 @@ var menuCard = {
     "B1": {
         "productName": "Peanut Crusted Cajun BlackBean Burger",
             "productType": "Burger",
-                "price": "2.50",
+                "price": "5.49",
                     "description": "Hand Made patty seared on the grill with black beans, spanish peanuts, rice flour for crunch & our house cajun spice blend",
                         "code": "B1",
                             "imageUrl": "images/burger.jpg",
@@ -21,7 +21,7 @@ var menuCard = {
     "B2": {
         "productName": "Mean Green Protein Pea Burger",
             "productType": "Burger",
-                "price": "2.50",
+                "price": "5.49",
                     "description": "Hand made patty seared on the grill and packed with protein from loads of green peas dusted with a savory spice blend",
                         "code": "B2",
                             "imageUrl": "images/burger.jpg",
@@ -40,7 +40,7 @@ var menuCard = {
     "B3": {
         "productName": "Golden Crunchy Potato Burger",
             "productType": "Burger",
-                "price": "2.00",
+                "price": "5.49",
                     "description": "A classic from the streets of India.. potatoes, a protein flour blend and secret spices make up this craveable, crunchy street food delight.",
                         "code": "B3",
                             "imageUrl": "images/burger.jpg ",
@@ -59,7 +59,7 @@ var menuCard = {
     "B4": {
         "productName": "The Love Seed Beet them All Burger",
             "productType": "Burger",
-                "price": "2.00",
+                "price": "5.49",
                     "description": "Fresh shredded beets, roasted sunflower seeds, flax seed, buck wheat, chickpea flour and just the right spice",
                         "code": "B4",
                             "imageUrl": "images/burger.jpg",
@@ -78,7 +78,7 @@ var menuCard = {
     "B5": {
         "productName": "Golden Crunchy Bird\"s Nest Burger",
             "productType": "Burger",
-                "price": "2.50",
+                "price": "5.49",
                     "description": "A sell out every rock show we ever set up at.. think coleslaw deepfried in a healthy chickpea flour base with cajun spice.",
                         "code": "B5",
                             "imageUrl": "images/burger.jpg",
@@ -97,7 +97,7 @@ var menuCard = {
     "B6": {
         "productName": "Sweet and Tangy burger",
             "productType": "Burger",
-                "price": "2.50",
+                "price": "5.49",
                     "description": "This burger is sweet and tangy",
                         "code": "B6",
                             "imageUrl": "images/burger.jpg",

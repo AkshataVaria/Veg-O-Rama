@@ -39,20 +39,44 @@
             </div>
         </div>
     </div>
-    <div id="body" style="background-color:white !important; margin-right:10%;">
+    <div id="body" style="background-color:white !important;">
 
-                    <div class="left" style=" position:absolute; left:0; top:250px; bottom: 4; width: 172px; border-style:solid;border-color:gray; background-color: lightgray;margin-left:2%;font-size: 16px;">
-					<a href="description.html?value=Burger">BURGER</a><br>
-					<a href="description.html?value=Subs">SPECIALITY SUBS</a>
-					<a href="description.html?value=Wraps">WRAPS|PIZZAS|BOWLS</a>
-					<a href="description.html?value=BreakFast">BREAKFAST</a>
-					<a href="description.html?value=Snacks">SOUPS|SALADS|SIDES</a>
-					<a href="description.html?value=Sandwiches">SANDWICHES</a>
-					<a href="description.html?value=Chaats">CRUNCHY CHAATS</a>
-					<a href="description.html?value=Smoothies">NATURAL SMOOTHIES</a>
-					<a href="description.html?value=Drinks">DRINKS|TEAS</a><BR>
-					<a href="description.html?value=Tooth">SWEET TOOTH</a>
-					</div>
+        <div class="leftBar">
+            <h1>Menu</h1>
+            <ul class="navigation">
+                <li class="first">
+                    <a href="description.html?value=Burgers">BURGER</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Subs">SPECIALITY SUBS</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Wraps">WRAPS</a>
+                </li>
+                <li>
+                    <a href="description.html?value=BreakFast">BREAKFAST</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Snacks">SNACKS</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Sandwiches">SANDWICHES</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Chaats">CRUNCHY CHAATS</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Drinks">DRINKS|TEAS</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Smoothies">NATURAL SMOOTHIES</a>
+                </li>
+                <li>
+                    <a href="description.html?value=Tooth">SWEET TOOTH</a>
+                </li>
+            </ul>
+  
+        </div>
 
         <div class="content" style="background:none !important">
             <table id="tblDescription" class="tblDesc" style="border-style:solid;border-color:gray;">
@@ -261,6 +285,9 @@
                             <input type="checkbox" name="typeOfAddOn" id="chkSamosa" value="2.99" onchange="addExtraCharges(this)"><label>2 Classic Samosa + $2.99</label><br />
                             <input type="checkbox" name="typeOfAddOn" id="chkFries" value="2.99" onchange="addExtraCharges(this)"><label>Famous Masala Fries + $2.99</label><br />
                             <input type="checkbox" name="typeOfAddOn" id="chkFritters" value="3.99" onchange="addExtraCharges(this)"> <label>8 Crispy Pakora Fritters + $3.99</label><br />
+                            <input type="checkbox" name="typeOfAddOn" id="chkLemonade" value="1.99" onchange="addExtraCharges(this)"><label>Lemonade + $1.99</label><br />
+                            <input type="checkbox" name="typeOfAddOn" id="chkLassi" value="2.99" onchange="addExtraCharges(this)"><label>Lassi + $2.99</label><br />
+                            <input type="checkbox" name="typeOfAddOn" id="chkSmoothie" value="4.99" onchange="addExtraCharges(this)"><label>Smoothies+ $4.99</label><br />
                         </td>
                     </tr>
 

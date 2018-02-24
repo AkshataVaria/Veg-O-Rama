@@ -1152,3 +1152,14 @@ a:hover {
 #trCustomStyle {
     background-color: lightgray;
 }
+.leftBar {
+    position: absolute;
+    left: 0;
+    top: 210px;
+    width: 255px;
+    border-style: solid;
+    border-color: gray;
+    background-color: lightgray;
+    margin-left: 1%;
+    font-size: 16px;
+}

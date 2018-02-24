@@ -30,7 +30,6 @@ function displaySelectedItem(menuType) {
 
 
 
-
 //After clicking Add to cart from pop up, fetch the menu item code, and other item code if any and call AddtoCart function
 function getItemCode(){
     var code = document.getElementById('modalItemCode').innerText;
@@ -41,18 +40,17 @@ function getItemCode(){
         })//If burger,get second burger by code and call AddtoCart
     if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
         //If user has not selected second burger,dont let them submit
-        var getSecondBurger = addSecondBurgerPrice();
-        if (getSecondBurger.length == 0) {
+        var secondBurger = addSecondBurgerPrice();
+        if (secondBurger.length == 0) {
             alert("Choose secoond burger");
 
         }
-        else if (getSecondBurger) {
-            getSecondBurger.forEach(function (secBurgerCode) {
+        else if (secondBurger) {          
                 this.addToCart(code);
-                this.addToCart(secBurgerCode);
+                this.addToCart(secondBurger);             
                 this.hideModal();
-              
-            })
+              //  this.clearBurgerCart()
+               
         }
         else {
 
@@ -64,12 +62,16 @@ function getItemCode(){
     else {// For all other items,except burger
         this.addToCart(code);
         this.hideModal();
-       
-      
-    }
+        
+     }
     }
     clearCartAndRerender();
-
+}
+function clearBurgerCart() {
+    $('#cartTableContents tr').remove(); /*Hacky fix*/
+    $('#cartPricing tr td div').html('');
+    generateBurgerCartHtml();
+    getPricing();
 }
 //Depending on what items user has checked, create an array and push those codes in array
 function getOptionalMenuItemCodes()
@@ -360,21 +362,10 @@ function generatePopUpHtmlForGenericItems(code)
     modal.style.display = "block";
   
     if (menuCard[code]) {
-      
-
         document.getElementById('modalItemName').innerHTML  = code +"."+ menuCard[code].productName;
         document.getElementById('modalItemDesc').innerHTML = menuCard[code].description;
         document.getElementById('modalItemCode').innerHTML = code;   
-        if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
-
-            document.getElementById('modalItemPrice').innerHTML = '$5.49'
-
-        }
-        else {
-            document.getElementById('modalItemPrice').innerHTML = '$' + menuCard[code].price;
-        }
-        
-        
+        document.getElementById('modalItemPrice').innerHTML = '$' + menuCard[code].price;
     }
     setPriceAddToBagBtn();
  
@@ -389,7 +380,7 @@ function hideModal(){
 	var modal = document.getElementById('myModal');
     modal.style.display = "none";
     $("#myModal").find('input:radio, input:checkbox').prop('checked', false);
-    document.getElementById('modalItemQty').value = 1;;
+    document.getElementById('modalItemQty').value = 1;
 }
 
 function incrementValue()
@@ -448,32 +439,9 @@ function calculateBowlPrice(element) {
 }
 
 function addSecondBurgerPrice() {
-    var secondBurgerSelected = [];
-    var currentPrice;
-    var rdSecondBurger = document.getElementsByName('rdBurgerType');
-    for (var i = 0, len = rdSecondBurger.length; i < len; i++) {
-        if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "B3" || rdSecondBurger[i].id == "B4")) {
-            currentPrice = getCurrentItemPrice();
-            currentPrice = (currentPrice + 2.00).toFixed(2);
-            setCurrentPrice(currentPrice)
-            secondBurgerSelected.push(rdSecondBurger[i].id)
-
-
-        }
-        else if ((rdSecondBurger[i].checked) && (rdSecondBurger[i].id == "B1" || rdSecondBurger[i].id == "B2" || rdSecondBurger[i].id == "B5" || rdSecondBurger[i].id == "B6")) {
-
-            currentPrice = getCurrentItemPrice();
-            currentPrice = (currentPrice + 2.50).toFixed(2);
-            setCurrentPrice(currentPrice)
-            secondBurgerSelected.push(rdSecondBurger[i].id)
-        }
-        else {
-
-        }
-
-    }
-    setPriceAddToBagBtn();
-    return secondBurgerSelected;
+  
+    var rdSecondBurger = document.querySelector('input[name="rdBurgerType"]:checked').id;   
+    return rdSecondBurger;
 }
  function setCurrentPrice(currentPrice) {
     document.getElementById('modalItemPrice').innerHTML = '$' + currentPrice
