@@ -18,6 +18,10 @@ var menuCard = {
                                         }
                                         ]
     },
+    "BG2": {
+        "price": "5.49",
+        "productType":"Burger"
+    },
     "B2": {
         "productName": "Mean Green Protein Pea Burger",
             "productType": "Burger",
@@ -1017,5 +1021,8 @@ var menuCategory = {
 var menuSuggestions = {
 
     "Burgers": ["P1", "SA1", "FR1", "FRT1"],
-    "Wraps": ["Smoothie1", "Smoothie2"]
+    "Wraps": ["P1", "SA1", "LM", "LA"],
+    "Bowls": ["LM", "LA", "SMT"],
+    "Common": ["FRT1", "LM", "LA", "SMT"],
+    "Customized":["FR1","FRT1"]
 }

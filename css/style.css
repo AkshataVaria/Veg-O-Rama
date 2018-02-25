@@ -1019,18 +1019,18 @@ ul#navigation {
     border-radius: 10px ; 
 }
 #tblPopUp {
-    width: 65%;
+    width: 75%;
     border-right: dotted 1px;
     border-right-color: gray;
     border-bottom: dotted 1px;
     border-bottom-color: gray;
-    float: left;
+   // float: left;
 }
-#tblPopUp tr{	
+/*#tblPopUp tr{	
 	border-bottom: dotted 1px;
     border-bottom-color: gray;
 
-}
+}*/
 .btnStyle
 {
     width:10px;
@@ -1048,9 +1048,9 @@ ul#navigation {
     border-radius: 5px;
 }
 .ExtraStyle{
-    display:flex;
-    flex-direction:row;
-    
+   display:inline-block;
+    flex-direction:column;
+   
 } 
 
 #trPopupHeader {
@@ -1081,7 +1081,7 @@ ul#navigation {
 	
 	margin-top: 15px;
 	height:40px;  
-    width:600px;
+    width:530px;
 }
 /* The Close Button */
 .close {

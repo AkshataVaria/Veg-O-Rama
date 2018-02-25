@@ -1,10 +1,11 @@
-var cartLine  = {
-	productName : '',
-	code: '',
-	productType: '',
-	qty :0,
-	price : 0.0,
-    notes :''
+var cartLine = {
+    productName: '',
+    code: '',
+    productType: '',
+    qty: 0, price: 0.0,
+    notes: '',
+    customOptions: { isVegan: false, isGF: false },
+    extraOptions: []
 }
 
 var cart = {
@@ -16,7 +17,7 @@ var cart = {
     totalQuantity: 0.0
 }
 
-//This singlr function is alone responsible for display images,item name and description based on menu type
+//This single function is alone responsible for display images,item name and description based on menu type
 function displaySelectedItem(menuType) {
     var itemsArray = [];   
     if (menuCategory[menuType]) {
@@ -34,22 +35,26 @@ function displaySelectedItem(menuType) {
 function getItemCode(){
     var code = document.getElementById('modalItemCode').innerText;
     var optionalItemCodes = getOptionalMenuItemCodes();
+    var extraItemCode = getExtraItems();
+    //if (extraItemCode) {
+    //    this.addToCart("extraItems");
+    //}
     if (optionalItemCodes) {
         optionalItemCodes.forEach(function (code) {
             this.addToCart(code);
-        })//If burger,get second burger by code and call AddtoCart
+        })
+
+        //If burger,get second burger by code and call AddtoCart
     if (code == 'B1' || code == 'B2' || code == 'B3' || code == 'B4' || code == 'B5' || code == 'B6') {
         //If user has not selected second burger,dont let them submit
-        var secondBurger = addSecondBurgerPrice();
+        var secondBurger = getSecondBurger();
         if (secondBurger.length == 0) {
-            alert("Choose secoond burger");
+            alert("Choose second burger");
 
         }
-        else if (secondBurger) {          
-                this.addToCart(code);
-                this.addToCart(secondBurger);             
-                this.hideModal();
-              //  this.clearBurgerCart()
+        else if (secondBurger) {                   
+            this.addToCart("BG2");                         
+            this.hideModal();              
                
         }
         else {
@@ -67,63 +72,101 @@ function getItemCode(){
     }
     clearCartAndRerender();
 }
-function clearBurgerCart() {
-    $('#cartTableContents tr').remove(); /*Hacky fix*/
-    $('#cartPricing tr td div').html('');
-    generateBurgerCartHtml();
-    getPricing();
+function getExtraItems() {
+    
+    var optionalMenuItems = [];
+    var checkboxes = document.getElementsByName('extraOptions');
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            optionalMenuItems.push(checkboxes[i].id);
+        }
+
+    }
+    return optionalMenuItems;
 }
 //Depending on what items user has checked, create an array and push those codes in array
 function getOptionalMenuItemCodes()
 {
     var optionalMenuItems = [];
-    var checkboxes = document.getElementsByName('typeOfAddOn');    
-  
+    var checkboxes = document.getElementsByName('typeOfAddOn');      
      for (let i = 0; i < checkboxes.length; i++)
       {
-             if (checkboxes[i].checked)
-               {
-                   if(checkboxes[i].id=="chkPopper"){
-                      optionalMenuItems.push("P1");
-                   }
-                   else if(checkboxes[i].id =="chkSamosa"){
-                      optionalMenuItems.push("SA1")
-                   }
-                   else if(checkboxes[i].id =="chkFries"){
-                    optionalMenuItems.push("FR1")
-                 }
-                 else if(checkboxes[i].id =="chkFritters"){
-                    optionalMenuItems.push("FRT1")
-                 }
-                   else if (checkboxes[i].id == "chkLassi") {
-                       optionalMenuItems.push("LA")
-                 }
-                   else if (checkboxes[i].id == "chkLemonade") {
-                       optionalMenuItems.push("LM")
-                 }
-                   else if (checkboxes[i].id == "chkSmoothie") {
-                       optionalMenuItems.push("SMT")
-                   }
-               } 
+         if (checkboxes[i].checked) {
+             optionalMenuItems.push(checkboxes[i].id);
+         }
      
      }
      return optionalMenuItems;
 }
 
+function getVGFCharges() {
+    var veganGluItems = [];
+    var checkboxes = document.getElementsByName('chkBurgerExtra');
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            veganGluItems.push(checkboxes[i].id);
+        }
+
+    }
+    return veganGluItems;
+}
+
+
 
 //Add items to cart depending on the code
-function addToCart(code){	   
-    if(menuCard[code]){       
-   var cartLine = new Object();        
-    cartLine.code = code;
-    cartLine.productName = menuCard[code].productName;
-    cartLine.productType = menuCard[code].productType;
-    cartLine.qty = document.getElementById('modalItemQty').value;
-    cartLine.price = menuCard[code].price * cartLine.qty;
-    cartLine.notes = document.getElementById('txtNotes').value;
-    var cartObj ;         
-     
+function addToCart(code) {	 
    
+   if (menuCard[code]) {       
+   var cartLine = new Object();        
+   cartLine.code = code;
+   cartLine.productType = menuCard[code].productType;
+   cartLine.qty = document.getElementById('modalItemQty').value;
+   cartLine.notes = document.getElementById('txtNotes').value;
+   var veganGlutenItems = getVGFCharges();
+
+
+   var extraItems = getExtraItems();
+   if (extraItems) {
+       cartLine.extraOptions = []
+       extraItems.forEach(function (item) {
+           cartLine.extraOptions.push(item);
+       })
+
+   }
+  
+       //If vegan or Gluten free,set flag to true
+   if (veganGlutenItems) {
+       cartLine.customOptions = new Object();
+       veganGlutenItems.forEach(function (vGfCode) {
+           if (vGfCode == 'V') {
+               
+               cartLine.customOptions.isVegan = true;
+               
+           }
+           if (vGfCode == 'GF') {
+               cartLine.customOptions.isGF = true;
+              
+           }
+          
+       })
+   }
+   
+      
+   
+   if (code == "BG2")
+   {
+       var burgerCode1 = document.getElementById('modalItemCode').innerText;
+       var burgerCode2 = getSecondBurger()
+       cartLine.productName ="*"+ menuCard[burgerCode1].productName +"*"+ menuCard[burgerCode2].productName;
+       cartLine.price = menuCard[code].price * cartLine.qty;
+   }  
+   else
+   {
+       cartLine.productName = menuCard[code].productName;
+       cartLine.price = menuCard[code].price * cartLine.qty;
+          
+   }
+   var cartObj ;        
 		if(typeof(Storage) !== "undefined") {
 			if (sessionStorage.getItem( "vegOramaCart" )) {
 				// cart already exists in the memory
@@ -132,8 +175,9 @@ function addToCart(code){
 				var found = false;
 				for (i = 0; i < cartObj.cartLine.length && found == false; i++) {
 					if(cartObj.cartLine[i].code == code){
-                        cartObj.cartLine[i].qty = parseInt(cartObj.cartLine[i].qty) + parseInt(document.getElementById('modalItemQty').value);
-                        cartObj.cartLine[i].notes = document.getElementById('txtNotes').value
+                        cartObj.cartLine[i].qty = parseInt(document.getElementById('modalItemQty').value);
+                        cartObj.cartLine[i].notes = document.getElementById('txtNotes').value;
+                      
 						found = true; 
 					}
 				}
@@ -172,11 +216,18 @@ function navigate() {
 }
 
 function calculateTotalPrice(cartObj) {
+   
     var totalPrice = 0.0;
     var totalQuantity = 0;
 	for (i = 0; i < cartObj.cartLine.length ; i++) {
         totalPrice = cartObj.cartLine[i].price * cartObj.cartLine[i].qty + Number(totalPrice);
         totalQuantity = totalQuantity + cartObj.cartLine[i].qty;
+        if (cartObj.cartLine[i].customOptions.isVegan) {
+            totalPrice = totalPrice + 1.00;
+        }
+        if (cartObj.cartLine[i].customOptions.isGF) {
+            totalPrice = totalPrice + 1.00;
+        }
 	}
 	cartObj.totalPrice = Number(totalPrice).toFixed(2); 
 	cartObj.salesTax = (totalPrice * 0.06).toFixed(2) ; 
@@ -256,33 +307,46 @@ function openPopUp(code) {
    
     if(code == 'B1' || code=='B2'|| code == 'B3' || code=='B4' || code=='B5'||code=='B6')
     {   
-
        generateHtmlForBurgerPopUp(code);
-        
+       var menuCategory = "Burgers";
+       renderExtraOptions(code);
+       renderCompleteMealOptions(menuCategory);
+
     }
     else if (code == 'BP' || code == 'GF' || code == 'OC' || code=='PC'||code=='SM'|| code =='FL' || code=='BC')
     {   
-       generateHtmlCustomizedItems(code);
+        generateHtmlCustomizedItems(code);
+        var menuCategory = "Customized";
+        renderExtraOptions(code);
+        renderCompleteMealOptions(menuCategory);
     }
     else if (code == 'W1' || code == 'W2' || code == 'W3' || code == 'W4' || code == 'W5' || code == 'W6' || code == 'W7') {
-        generateHtmlCustomizedItems(code);
-
-
+        generateHtmlCustomizedItems(code);      
+        renderExtraOptions(code);
+        var menuCategory = "Wraps"
+        renderExtraOptions(code);
+        renderCompleteMealOptions(menuCategory);
     }
     else if (code == 'S1' || code == 'S2') {
-        generatePopUpHtmlForGenericItems(code);
+        generatePopUpHtmlForGenericItems(code);       
         var vegGluten = document.getElementById('trBurgerExtra');
         vegGluten.style.display = "block";
+        var menuCategory = "Bowls";       
+        renderCompleteMealOptions(menuCategory);
     }
     else
     {
         generatePopUpHtmlForGenericItems(code);
-       
+        var menuCategory = "Common";
+        renderExtraOptions(code);
+        renderCompleteMealOptions(menuCategory);
     }
   
     
 }
+function renderVeganGlutenOptions() {
 
+}
 
 function generateHtmlCustomizedItems(code)
 {
@@ -295,44 +359,51 @@ function generateHtmlCustomizedItems(code)
    
     var modal1 = document.getElementById('trCustomExtra');
     modal1.style.display = "block";
-    
-        
-            //if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
-            //    var result = menuCard[code].extraOptions
-            //    if (result) {
-            //        const newRow = document.getElementById('tblPopUp').appendChild(document.createElement('tr'));
-            //        result.forEach((item, colNumber) => {                       
-            //            const column = newRow.appendChild(document.createElement('td'));
+  
+}
 
-            //            const colId = 'extraOptions' + colNumber;
-            //            column.setAttribute('id', colId);
+function renderExtraOptions(code) {
+    if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
+        var result = menuCard[code].extraOptions
+        if (result) {
+            var firstRow = document.createElement('tr');
+            firstRow.appendChild(document.createTextNode("Add any of your favorites:"))
+            $("#tblPopUp tr:last").after(firstRow);
+            firstRow.appendChild(document.createElement('hr'));
+         
+            result.forEach((item, rowNumber) => {
+           
+                const newRow = document.createElement('tr');
+                firstRow.appendChild(newRow);
+                const rowId = 'extraOptions' + rowNumber;
+                newRow.setAttribute('id', rowId);
 
-            //            var checkbox = document.createElement('input');
-            //            checkbox.type = "checkbox";
-            //            checkbox.name = "extraOptions";
-            //            checkbox.value = item.type;
-            //            checkbox.id = colId + item.type;
-            //            checkbox.style.width = "30px";
-            //            var label = document.createElement('label')
-            //            label.htmlFor = colId + item.type;
+                var checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+                checkbox.name = "extraOptions";
+                checkbox.value = item.type;
+                checkbox.id =   item.type;
+               
+                var label = document.createElement('label')
+                label.htmlFor = item.type;
 
-            //            label.appendChild(document.createTextNode(item.type));
-            //            label.style.width = "30px";
-            //            column.appendChild(checkbox);
-            //            column.appendChild(label);
+                label.appendChild(document.createTextNode(item.type));
+                label.style.width = "120px";
+                newRow.appendChild(checkbox);
+                newRow.appendChild(label);
 
-            //            newRow.appendChild(column);
-            //            newRow.className = "ExtraStyle";
+                
+                newRow.className = "ExtraStyle";
+                newRow.appendChild(document.createElement('br'))
 
-            //        })
-            //    }
+            })
+        }
 
-            //}
-        
-
+    }
 }
 function generateHtmlForBurgerPopUp(code)
 {
+   
     generatePopUpHtmlForGenericItems(code); 
     var burgerAdd = document.getElementById('modalBurgerLine'); 
     burgerAdd.style.display = "block";
@@ -352,9 +423,56 @@ function generateHtmlForBurgerPopUp(code)
     modal.style.display = "block";
     var modal1 = document.getElementById('trBurgerExtra');
     modal1.style.display = "block";
-    
+
+  
 
     
+}
+
+function renderCompleteMealOptions(menuCategory)
+{
+    if (menuSuggestions[menuCategory]) {
+        var firstRow = document.createElement('div');
+        firstRow.appendChild(document.createTextNode("Complete your meal options:"));
+        $("#tblPopUp tr:last").after(firstRow);
+        firstRow.appendChild(document.createElement('hr'));
+       
+        menuSuggestions[menuCategory].forEach(function (menuItemCode, rowNumber) {
+            if (menuCard[menuItemCode]) {
+               
+                const newRow = document.createElement('tr');              
+                const rowId = 'typeOfAddOn' + rowNumber;
+                newRow.setAttribute('id', rowId);
+
+                var checkbox = document.createElement('input');
+                checkbox.type = "checkbox";
+                checkbox.name = "typeOfAddOn";
+                checkbox.value = menuCard[menuItemCode].price;
+                checkbox.id =  menuCard[menuItemCode].code;
+            
+               
+                var label = document.createElement('label')
+                label.htmlFor = rowId + menuCard[menuItemCode].productName;
+                var labelText = menuCard[menuItemCode].productName +" "+  "+" + " "+ "$" + menuCard[menuItemCode].price
+                label.appendChild(document.createTextNode(labelText));
+                label.style.width = "120px";
+
+
+                firstRow.appendChild(newRow);
+                
+                newRow.appendChild(checkbox);
+                checkbox.setAttribute("onchange", "addExtraCharges(this)");
+                newRow.appendChild(label);
+                newRow.className = "ExtraStyle";
+                newRow.appendChild(document.createElement('br'))
+               
+
+            }
+
+
+        })
+    }
+
 }
 function generatePopUpHtmlForGenericItems(code)
 {
@@ -381,6 +499,7 @@ function hideModal(){
     modal.style.display = "none";
     $("#myModal").find('input:radio, input:checkbox').prop('checked', false);
     document.getElementById('modalItemQty').value = 1;
+    $("#tblPopUp").innerHTML = '';
 }
 
 function incrementValue()
@@ -438,7 +557,7 @@ function calculateBowlPrice(element) {
     setPriceAddToBagBtn();
 }
 
-function addSecondBurgerPrice() {
+function getSecondBurger() {
   
     var rdSecondBurger = document.querySelector('input[name="rdBurgerType"]:checked').id;   
     return rdSecondBurger;
@@ -458,6 +577,7 @@ function getCurrentItemPrice() {
 }
 function addExtraCharges(element)
 {
+   
     var currentPrice;
     if (element.checked) {
 
