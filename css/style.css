@@ -1019,12 +1019,12 @@ ul#navigation {
     border-radius: 10px ; 
 }
 #tblPopUp {
-    width: 65%;
+    width: 75%;
     border-right: dotted 1px;
     border-right-color: gray;
     border-bottom: dotted 1px;
     border-bottom-color: gray;
-    float: left;
+   // float: left;
 }
 /*#tblPopUp tr{	
 	border-bottom: dotted 1px;
@@ -1048,9 +1048,9 @@ ul#navigation {
     border-radius: 5px;
 }
 .ExtraStyle{
-    display:flex;
-    flex-direction:row;
-    
+   display:inline-block;
+    flex-direction:column;
+   
 } 
 
 #trPopupHeader {

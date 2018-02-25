@@ -80,7 +80,7 @@ function generateBurgerCartHtml() {
     var itemName = document.getElementById('modalItemName').innerText; //Get the original price based on the code of item name in the header
     var burgerCode1 = itemName.split('.')[0]
     console.log(burgerCode1);
-    var burgerCode2 = addSecondBurgerPrice();
+    var burgerCode2 = getSecondBurger();
     console.log(burgerCode2);
     const newRow = document.getElementById('cartTableContents').appendChild(document.createElement('tr'));
     const rowId = 'cartRow' + Math.random();
@@ -147,11 +147,12 @@ function generateBurgerCartHtml() {
 //Display items in cart on the right hand side
 
 function displaySelectedItemsFromCart() {
+    debugger;
     //Since the user can select any number of items, creating the div's dynamically
  
     var response = sessionStorage.getItem("vegOramaCart");
     var result = JSON.parse(response);
-
+    var quantity;
     //Cartline is an array and will have multiple items, so looping through and fetching values from session to display inside div's.
     if (result) {
         console.log(result);
@@ -160,7 +161,9 @@ function displaySelectedItemsFromCart() {
             const rowId = 'cartRow' + rowNumber;
             newRow.setAttribute('id', rowId);
             var code = item.code;
-
+            var vegan = item.customOptions.isVegan ?'(V)':'';
+            var gluten = item.customOptions.isGF ? '(GF)' : '';
+           
             var btnMinus = document.createElement("img");
             btnMinus.src = "images/edit1.jpg";
             btnMinus.style.width = "15px"
@@ -173,21 +176,30 @@ function displaySelectedItemsFromCart() {
 
             };
 
-            const productName = code + "." + item.productName;
-            var divProductName = document.createElement("div");
-            var textnode = document.createTextNode(productName)
-            divProductName.appendChild(textnode);
-
+            const productName = code + "." + item.productName + vegan+ " " + gluten;
+                var divProductName = document.createElement("div");
+                var textnode = document.createTextNode(productName)
+                divProductName.appendChild(textnode);
+            
             if (item.notes) {
                 var notes = "[" + item.notes + "]";
                 var divNotes = document.createElement("div");
                 var textNotes = document.createTextNode(notes);
                 divProductName.appendChild(textNotes);
-            }
+                }
 
+            var extraOptions = item.extraOptions;
+            if (extraOptions) {
+                extraOptions.forEach(function (extraItem) {
+                    var extra = "(" + extraItem + ")";                    
+                    var textExtra = document.createTextNode(extra);                    
+                    divProductName.appendChild(textExtra);
+                })
+            }
             newRow.appendChild(divProductName)
             divProductName.style.width = "60%";
-            const quantity = item.qty;
+
+            quantity = item.qty;
             var divQty = document.createElement("div");
             var textnodeQty = document.createTextNode(quantity);
             divQty.appendChild(textnodeQty);
@@ -240,8 +252,7 @@ function getPricing() {
     var result = JSON.parse(response);
     //Cartline is an array and will have multiple items, so looping through and fetching values from session to display inside div's.
     if (result) {
-        const totalprice = "$" + result.totalPrice
-     //   var divTotalPrice = document.createElement("div");
+        const totalprice = "$" + result.totalPrice    
         var textnodeTotalPrice = document.createTextNode(totalprice)
         var divTotalPrice = document.getElementById('dvTotalPrice')
         divTotalPrice.appendChild(textnodeTotalPrice);
