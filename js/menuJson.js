@@ -752,7 +752,7 @@ var menuCard = {
     },
     "P1": {
         "productName": "Popper",
-            "productType": "Optional",
+            "productType": "Snacks",
                 "price": "3.49",
                     "description": "Snack",
                         "code": "P1",
@@ -760,7 +760,7 @@ var menuCard = {
     },
     "SA1": {
         "productName": "Samosa",
-            "productType": "Optional",
+        "productType": "Snacks",
                 "price": "2.99",
                     "description": "Snack",
                         "code": "SA1",
@@ -768,7 +768,7 @@ var menuCard = {
     },
     "FR1": {
         "productName": "Fries",
-            "productType": "Optional",
+        "productType": "Snacks",
                 "price": "2.99",
                     "description": "Snack",
                         "code": "FR1",
@@ -776,7 +776,7 @@ var menuCard = {
     },
     "FRT1": {
         "productName": "Fritters",
-            "productType": "Optional",
+        "productType": "Snacks",
                 "price": "3.99",
                     "description": "Snack",
                         "code": "FRT1",
@@ -784,7 +784,7 @@ var menuCard = {
     },
     "LM": {
         "productName": "Lemonade",
-        "productType": "Optional",
+        "productType": "Snacks",
         "price": "1.99",
         "description": "Drink",
         "code": "LM",
@@ -792,7 +792,7 @@ var menuCard = {
     },
     "LA": {
         "productName": "Lassi",
-        "productType": "Optional",
+        "productType": "Snacks",
         "price": "2.99",
         "description": "Drink",
         "code": "LA",
@@ -800,7 +800,7 @@ var menuCard = {
     },
     "SMT": {
         "productName": "Smoothie",
-        "productType": "Optional",
+        "productType": "Snacks",
         "price": "4.99",
         "description": "Drink",
         "code": "SMT",

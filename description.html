@@ -14,6 +14,15 @@
 <script type="text/javascript">
     window.onload = displayItemDescription;    
 </script>
+<script>
+    $(document).click(function (e) {
+        if ($(e.target).is('#myModal')) {
+            $('#myModal').fadeOut(500);
+        }
+
+    });
+
+</script>
 <html>
 <body>
 
@@ -245,7 +254,7 @@
                 </div>
                 <div class="paddingBurger">
                 <input type="radio" name="rdBurgerType" id="B5" value="2.50" required>Golden Crunchy Bird's Nest Burger
-                <input type="radio" name="rdBurgerType" id="B6" value="2.50" required>Peanut Crusted Blackbean Burger
+                <input type="radio" name="rdBurgerType" id="B6" value="2.50" required>Sweet and Tangy burger
                 </div>
                 </div>
                 </td>
