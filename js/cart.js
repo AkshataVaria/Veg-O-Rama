@@ -114,14 +114,19 @@ function getVGFCharges() {
 
 
 //Add items to cart depending on the code
-function addToCart(code) {	 
-   
+function addToCart(code) {	    
    if (menuCard[code]) {       
    var cartLine = new Object();        
    cartLine.code = code;
    cartLine.productType = menuCard[code].productType;
    cartLine.qty = document.getElementById('modalItemQty').value;
-   cartLine.notes = document.getElementById('txtNotes').value;
+   if (code == "P1" || code == "SA1" | code == "FR1" | code == "FRT1" || code == "LA" || code == "LM" || code == "SMT") {
+       cartLine.notes = "";
+   }
+   else {
+       cartLine.notes = document.getElementById('txtNotes').value;
+   }
+   
    var veganGlutenItems = getVGFCharges();
 
 
@@ -497,11 +502,15 @@ function setPriceAddToBagBtn()
 function hideModal(){
 	var modal = document.getElementById('myModal');
     modal.style.display = "none";
+    clearPopUpValues();
+  
+}
+function clearPopUpValues() {
     $("#myModal").find('input:radio, input:checkbox').prop('checked', false);
     document.getElementById('modalItemQty').value = 1;
-    $("#tblPopUp").innerHTML = '';
+    $("#tblPopUp").innerHTML = '';  
+    $('#txtNotes').val('');
 }
-
 function incrementValue()
 {
     var originalPrice;

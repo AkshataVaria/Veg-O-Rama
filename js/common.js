@@ -180,8 +180,8 @@ function displaySelectedItemsFromCart() {
                 var divProductName = document.createElement("div");
                 var textnode = document.createTextNode(productName)
                 divProductName.appendChild(textnode);
-            
-            if (item.notes) {
+
+                if (item.notes && item.notes.length>1) {
                 var notes = "[" + item.notes + "]";
                 var divNotes = document.createElement("div");
                 var textNotes = document.createTextNode(notes);
