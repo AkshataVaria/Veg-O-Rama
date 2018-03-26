@@ -73,16 +73,7 @@
                 </li>
                 <li>
                     <a href="description.html?value=Chaats">CRUNCHY CHAATS</a>
-                </li>
-                <li>
-                    <a href="description.html?value=Drinks">DRINKS|TEAS</a>
-                </li>
-                <li>
-                    <a href="description.html?value=Smoothies">NATURAL SMOOTHIES</a>
-                </li>
-                <li>
-                    <a href="description.html?value=Tooth">SWEET TOOTH</a>
-                </li>
+                </li>              
             </ul>
   
         </div>
@@ -280,12 +271,12 @@
                 </td>
                 </tr>
                 <tr style="display:none" id="trCustomExtra">
-                <td colspan="2">
-                <div class="fontBold">Would you like to add extra?</div>
-                <div>Optional- Choose a maximum of 1</div>
-                <input type="checkbox" name="typeOfRice" id="chkBasmati" value="1.00" onchange="addExtraCharges(this)"><label>Add basmati + $1.00</label>
-                <input type="checkbox" name="typeOfRice" id="chkBrown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
-                </td>
+                    <td colspan="2">
+                        <div class="fontBold">Would you like to add extra?</div>
+                        <div>Optional- Choose a maximum of 1 <span class="chooseMax1" id="chooseMax1">Maximum number of options exceeded</span></div>  
+                        <input type="checkbox" name="typeOfRice" id="Basmati" value="1.00" onchange="addExtraCharges(this)"><label>Add basmati + $1.00</label>
+                        <input type="checkbox" name="typeOfRice" id="Brown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
+                    </td>
                 </tr>
 
                 <tr id="trSpclInstructions">

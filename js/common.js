@@ -163,6 +163,8 @@ function displaySelectedItemsFromCart() {
             var code = item.code;
             var vegan = item.customOptions.isVegan ?'(V)':'';
             var gluten = item.customOptions.isGF ? '(GF)' : '';
+            var basmatiRice = item.customOptions.isBasmatiRice ? '(Basmati)' : '';
+            var brownRice = item.customOptions.isBrownRice ? '(Brown)' : '';
            
             var btnMinus = document.createElement("img");
             btnMinus.src = "images/edit1.jpg";
@@ -176,7 +178,7 @@ function displaySelectedItemsFromCart() {
 
             };
 
-            const productName = code + "." + item.productName + vegan+ " " + gluten;
+            const productName = code + "." + item.productName + vegan + " " + gluten + " " + basmatiRice + " " + brownRice;
                 var divProductName = document.createElement("div");
                 var textnode = document.createTextNode(productName)
                 divProductName.appendChild(textnode);
@@ -187,6 +189,7 @@ function displaySelectedItemsFromCart() {
                 var textNotes = document.createTextNode(notes);
                 divProductName.appendChild(textNotes);
                 }
+
 
             var extraOptions = item.extraOptions;
             if (extraOptions) {

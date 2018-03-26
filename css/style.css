@@ -1081,7 +1081,7 @@ ul#navigation {
 	
 	margin-top: 15px;
 	height:40px;  
-    width:530px;
+    width:100%;
 }
 /* The Close Button */
 .close {
@@ -1162,4 +1162,8 @@ a:hover {
     background-color: lightgray;
     margin-left: 1%;
     font-size: 16px;
+}
+.chooseMax1 {
+    color: darkorange;
+    display:none;
 }

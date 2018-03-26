@@ -4,7 +4,7 @@ var cartLine = {
     productType: '',
     qty: 0, price: 0.0,
     notes: '',
-    customOptions: { isVegan: false, isGF: false },
+    customOptions: { isVegan: false, isGF: false, isBasmatiRice: false,isBrownRice:false },
     extraOptions: []
 }
 
@@ -111,12 +111,25 @@ function getVGFCharges() {
     return veganGluItems;
 }
 
+function getRiceOptions() {
+    
+    var typeOfRice = [];
+    var checkboxes = document.getElementsByName('typeOfRice');
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            typeOfRice.push(checkboxes[i].id);
+        }
+
+    }
+    return typeOfRice;
+}
 
 
 //Add items to cart depending on the code
 function addToCart(code) {	    
    if (menuCard[code]) {       
-   var cartLine = new Object();        
+       var cartLine = new Object();        
+       cartLine.customOptions = new Object();
    cartLine.code = code;
    cartLine.productType = menuCard[code].productType;
    cartLine.qty = document.getElementById('modalItemQty').value;
@@ -128,6 +141,18 @@ function addToCart(code) {
    }
    
    var veganGlutenItems = getVGFCharges();
+   var riceOptions = getRiceOptions();
+   if (riceOptions) {
+       riceOptions.forEach(function (riceCode) {
+           if (riceCode == 'Basmati') {
+               cartLine.customOptions.isBasmatiRice = true;
+           }
+           if (riceCode == 'Brown') {
+               cartLine.customOptions.isBrownRice = true;
+           }
+
+       })
+   }
 
 
    var extraItems = getExtraItems();
@@ -140,17 +165,13 @@ function addToCart(code) {
    }
   
        //If vegan or Gluten free,set flag to true
-   if (veganGlutenItems) {
-       cartLine.customOptions = new Object();
+   if (veganGlutenItems) {      
        veganGlutenItems.forEach(function (vGfCode) {
-           if (vGfCode == 'V') {
-               
-               cartLine.customOptions.isVegan = true;
-               
+           if (vGfCode == 'V') {               
+               cartLine.customOptions.isVegan = true;               
            }
            if (vGfCode == 'GF') {
-               cartLine.customOptions.isGF = true;
-              
+               cartLine.customOptions.isGF = true;              
            }
           
        })
@@ -231,6 +252,12 @@ function calculateTotalPrice(cartObj) {
             totalPrice = totalPrice + 1.00;
         }
         if (cartObj.cartLine[i].customOptions.isGF) {
+            totalPrice = totalPrice + 1.00;
+        }
+        if (cartObj.cartLine[i].customOptions.isBasmatiRice) {
+            totalPrice = totalPrice + 1.00;
+        }
+        if (cartObj.cartLine[i].customOptions.isBrownRice) {
             totalPrice = totalPrice + 1.00;
         }
 	}
@@ -586,7 +613,7 @@ function getCurrentItemPrice() {
 }
 function addExtraCharges(element)
 {
-   
+    var count = 0;
     var currentPrice;
     if (element.checked) {
 
@@ -600,5 +627,15 @@ function addExtraCharges(element)
         currentPrice = (currentPrice - parseFloat(element.value)).toFixed(2);
         setCurrentPrice(currentPrice);
         setPriceAddToBagBtn();
+    }
+    var typeOfCheckbox = document.getElementsByName('typeOfRice')
+    for (i = 0; i < typeOfCheckbox.length; i++) {
+        if (typeOfCheckbox[i].checked) {
+            count += 1;
+        }
+    }
+    if (count > 1) {
+
+        $('#chooseMax1').show();
     }
 }

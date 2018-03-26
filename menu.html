@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
 <head>
     <title>Burger Menu - Retro Diner</title>
     <meta charset="utf-8">
@@ -14,6 +13,7 @@
 <div id = "blue-third">
     <div id="header">
         <div>
+		<a onclick="getItemCode()"><img src="images/shoppingBag1.png" width="23" height="35" style="margin-top:16%" /></a>
             <a href="index.html"><img src="images/logo.png" id="logo" width="400" height="200" " alt="" title=""></a>
             <ul class="navigation">
                 <li>
@@ -31,37 +31,25 @@
                
             </ul>
         </div>
-        <div class="navbar">
-
-            <a href="description.html?value=Subs">Subs</a>
-            <a href="description.html?value=Wraps">Wraps</a>
-            <a href="description.html?value=BreakFast">Breakfast</a>
-            <a href="description.html?value=Snacks">Breakfast</a>
-            <a href="description.html?value=Sandwiches">Sandwich</a>
-            <a href="description.html?value=Chaats">Chaats</a>
-        </div>
+   
     </div>
 </body>
 <div class="container">
-  <h1 style="font-family:'NunitoRegular;'font-size: '56px;'"">Menu </h1>
-     
-  <div class="row">
-      <div class="col-lg-6">
-          <img src="images/burger.jpg" class="img-responsive" width="400" height="250">         
-          <a href="description.html?value=Burgers" onclick="displayBurgers()" class="icon-thumbs-up"> <div id="Order-Box"> Choose any 2 burgers <span class="glyphicon glyphicon-arrow-right" style="margin:2px;font-size: 30px;"></span> </div></a>
-          <div class="bottom-left"> Burgers </div>
-      </div>
-    <div class="col-lg-6 testing">
-        <img src="images/bowl.jpg" class="img-responsive" width="400" height="250">
-        <a href="description.html?value=Bowls" onclick="displayBowls()"> <div id="Order-Box"> ORDER NOW <span class="glyphicon glyphicon-arrow-right" style="margin:2px;font-size: 30px;"></span> </div></a>
-        <div class="bottom-left"> Bowls </div>
-    </div>
-    <div class="col-lg-6">
-            <img src="images/wraps.jpg" class="img-responsive" width="400" height="250">
-            <a href="description.html?value=Customized" onclick="displayCustomizedItems()"> <div id="Order-Box"> ORDER NOW <span class="glyphicon glyphicon-arrow-right" style="margin:2px;font-size: 10px;"></span> </div></a>
-            <div class="bottom-left">wraps,Pizza's and Bowls</div>
+
+        <div class="row">
+		
+          <a href="description.html?value=Burgers" onclick="displayItemDescription()"><img src="images/burger.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>    		
+		  <a href="description.html?value=Bowls" onclick="displayItemDescription()"><img src="images/sub.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;"></a>		  
+		  <a href="description.html?value=Customized" onclick="displayItemDescription()"><img src="images/grilledFazitas.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <a href="description.html?value=Subs" onclick="displayItemDescription()"><img src="images/fries.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <a href="description.html?value=Chaats" onclick="displayItemDescription()"><img src="images/phillyChicken.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <a href="description.html?value=Breakfast" onclick="displayItemDescriptio()n"><img src="images/bowl1.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <a href="description.html?value=Snacks" onclick="displayItemDescription()"><img src="images/falafel.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <a href="description.html?value=Sandwiches" onclick="displayItemDescription()"><img src="images/sandwichmenu.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <a href="description.html?value=Wraps" onclick="displayItemDescription()"><img src="images/wraps.jpg" style="float: left; width: 30%; margin-right: 1%; margin-bottom: 0.5em;" ></a>
+		  <p style="clear: both;">
+
         </div>
-  </div>
 </div>
 
 
