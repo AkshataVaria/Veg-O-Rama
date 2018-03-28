@@ -147,7 +147,7 @@ function generateBurgerCartHtml() {
 //Display items in cart on the right hand side
 
 function displaySelectedItemsFromCart() {
-    debugger;
+   
     //Since the user can select any number of items, creating the div's dynamically
  
     var response = sessionStorage.getItem("vegOramaCart");
