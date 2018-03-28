@@ -546,26 +546,100 @@ img {
     color:#822619;
 
 }
-#Order-Box
-{
-	position: absolute;
-   	top: 50%;
+.bottom-right {
+    position: absolute;
+    top: 400px;
+    left: 370px;
+    font-style: italic;
+    font-size: 2.0em;
+    color:blue;
+    text-decoration:underline;
+}
+.bottom-sub {
+    position: absolute;
+    top: 400px;
+    left: 800px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}
+.bottom-wrap {
+    position: absolute;
+    top: 400px;
+    left: 1170px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}
+.bottom-bf {
+    position: absolute;
+    top: 620px;
+    left: 370px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}
+.bottom-snacks {
+    position: absolute;
+    top: 620px;
+    left: 800px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}
+.bottom-Sandwich {
+    position: absolute;
+    top: 620px;
+    left: 1100px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}
+.bottom-custom {
+    position: absolute;
+    top: 870px;
+    left: 290px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}
+.bottom-Chaats {
+    position: absolute;
+    top: 870px;
+    left: 778px;
+    font-style: italic;
+    font-size: 2.0em;
+    color: blue;
+    text-decoration: underline;
+}.container .row a {
+    width: 30%;
+    height: 30%;
+}
+
+#Order-Box {
+    position: absolute;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-	height:70px;
-	width: 220px;
-	background-color:#FCCF34;
-	font-size:25px;
-	text-align: center;
-	color:white;
-	margin:0;
-	display: flex;
-	font-family: 'Fontdiner';
-	font-weight: bold;
+    height: 70px;
+    width: 220px;
+    background-color: #FCCF34;
+    font-size: 25px;
+    text-align: center;
+    color: white;
+    margin: 0;
+    display: flex;
+    font-family: 'Fontdiner';
+    font-weight: bold;
     align-items: center;
     justify-content: center;
-    opacity:0.8;
-
+    opacity: 0.8;
 }
 #body div#section {
 	float :left;
