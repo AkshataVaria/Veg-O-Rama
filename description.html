@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <script type="text/javascript">
-    window.onload = displayItemDescription;    
+    window.onload = displayItemDescription;
 </script>
 <script>
     $(document).click(function (e) {
@@ -51,31 +51,31 @@
     <div id="body" style="background-color:white !important;">
 
         <div class="leftBar">
-            <h1>Menu</h1>
-            <ul class="navigation">
-                <li class="first">
+
+            <ul class="menuItems">
+                <li class="displayInline">
                     <a href="description.html?value=Burgers">BURGERS</a>
                 </li>
-                <li>
+                <li class="displayInline">
                     <a href="description.html?value=Subs">SPECIALITY SUBS</a>
                 </li>
-                <li>
+                <li class="displayInline">
                     <a href="description.html?value=Wraps">WRAPS</a>
                 </li>
-                <li>
+                <li class="displayInline">
                     <a href="description.html?value=BreakFast">BREAKFAST</a>
                 </li>
-                <li>
+                <li class="displayInline">
                     <a href="description.html?value=Snacks">SNACKS</a>
                 </li>
-                <li>
+                <li class="displayInline">
                     <a href="description.html?value=Sandwiches">SANDWICHES</a>
                 </li>
-                <li>
+                <li class="displayInline">
                     <a href="description.html?value=Chaats">CRUNCHY CHAATS</a>
-                </li>              
+                </li>
             </ul>
-  
+
         </div>
 
         <div class="content" style="background:none !important">
@@ -188,106 +188,106 @@
     </div>
 
     <div id="myModal" class="modal">
-        <div class="modal-content">          
+        <div class="modal-content">
 
             <form>
                 <table id="tblPopUp">
-                <tr id="trPopupHeader">
-                <td id="modalItemName"> </td>
-                <td> <span class="close" id="closeModal" onclick="hideModal(); return false">&times;</span></td>
-                </tr>
-                <tr style="display:none" id="modalBurgerLine">
-                <td class="fontBold">Choose any 2 burger's for $5.49</td>
-                </tr>
-                <tr>
-                <td class ="tdWidth" colspan="2" id="modalItemDesc">   </td>
-                </tr>
-                <tr>
-                <td> <b>Price:</b> </td>
-                <td class="txtRightAlign" id="modalItemPrice"> </td>
-                </tr>
-                <tr id="trQuantity">
-                <td>  <label for="name"><b>Quantity:</b></label></td>
-                <td class="txtRightAlign">
-                <input type="button" onclick="decrementValue()" id="btnDecrement" value="-" class="btnStyle">
-                <input type="number" min="1" id="modalItemQty" value="1" />
-                <input type="button" onclick="incrementValue()" value="+" id="btnIncrement" class="btnStyle" />
-                <input type="hidden" id="modalItemCode">
-                </td>
-                </tr>
-                <tr id="trBurgerFirst" style="display:none">
-                <td>
-                <b> Choose extras for first burger as you'd like:</b><br />
-                <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="V"> Vegan Cheese  +$1.00<br>
-                <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="GF"> Gluten Free bun  +$1.00
-                </td>
-                </tr>
-                <tr id="trBurgerFirstCommentLabel" style="display:none">
-                <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
-                </tr>
-                <tr id="trTxtFirstComment" style="display:none">
-                <td colspan="2">
-                <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtFirstComment"></textarea>
-                </td>
-                </tr>
-                <tr id="trBurgerItems" style="display:none;background-color:lightgray">
-                <td>
-                <div>
-                <b>*Choose second burger:</b>
-                <div>Required choose 2nd  </div>
-                <div class="paddingBurger">
-                <input type="radio" name="rdBurgerType" id="B1" value="2.50" required>Peanut Crusted Cajun Blackbean Burger
-                <input type="radio" name="rdBurgerType" id="B2" value="2.50" required>Mean Green Protein Pea Burger
-                </div>
-                <div class="paddingBurger">
-                <input type="radio" name="rdBurgerType" id="B3" value="2.00" required>Golden Crunchy Potato Burger
-                <input type="radio" name="rdBurgerType" id="B4" value="2.00" required>The Love Seed Beet Them All Burger
-                </div>
-                <div class="paddingBurger">
-                <input type="radio" name="rdBurgerType" id="B5" value="2.50" required>Golden Crunchy Bird's Nest Burger
-                <input type="radio" name="rdBurgerType" id="B6" value="2.50" required>Sweet and Tangy burger
-                </div>
-                </div>
-                </td>
-                </tr>
-                <tr id="trBurgerExtra" style="display:none">
-                <td>
-                <b> Choose extras as you'd like:</b><br />
-                <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="V"> Vegan Cheese  +$1.00<br>
-                <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="GF"> Gluten Free bun  +$1.00
-                </td>
-                </tr>
+                    <tr id="trPopupHeader">
+                        <td id="modalItemName"> </td>
+                        <td> <span class="close" id="closeModal" onclick="hideModal(); return false">&times;</span></td>
+                    </tr>
+                    <tr style="display:none" id="modalBurgerLine">
+                        <td class="fontBold">Choose any 2 burger's for $5.49</td>
+                    </tr>
+                    <tr>
+                        <td class="tdWidth" colspan="2" id="modalItemDesc">   </td>
+                    </tr>
+                    <tr>
+                        <td> <b>Price:</b> </td>
+                        <td class="txtRightAlign" id="modalItemPrice"> </td>
+                    </tr>
+                    <tr id="trQuantity">
+                        <td>  <label for="name"><b>Quantity:</b></label></td>
+                        <td class="txtRightAlign">
+                            <input type="button" onclick="decrementValue()" id="btnDecrement" value="-" class="btnStyle">
+                            <input type="number" min="1" id="modalItemQty" value="1" />
+                            <input type="button" onclick="incrementValue()" value="+" id="btnIncrement" class="btnStyle" />
+                            <input type="hidden" id="modalItemCode">
+                        </td>
+                    </tr>
+                    <tr id="trBurgerFirst" style="display:none">
+                        <td>
+                            <b> Choose extras for first burger as you'd like:</b><br />
+                            <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="V"> Vegan Cheese  +$1.00<br>
+                            <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="GF"> Gluten Free bun  +$1.00
+                        </td>
+                    </tr>
+                    <tr id="trBurgerFirstCommentLabel" style="display:none">
+                        <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
+                    </tr>
+                    <tr id="trTxtFirstComment" style="display:none">
+                        <td colspan="2">
+                            <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtFirstComment"></textarea>
+                        </td>
+                    </tr>
+                    <tr id="trBurgerItems" style="display:none;background-color:lightgray">
+                        <td>
+                            <div>
+                                <b>*Choose second burger:</b>
+                                <div>Required choose 2nd  </div>
+                                <div class="paddingBurger">
+                                    <input type="radio" name="rdBurgerType" id="B1" value="2.50" required>Peanut Crusted Cajun Blackbean Burger
+                                    <input type="radio" name="rdBurgerType" id="B2" value="2.50" required>Mean Green Protein Pea Burger
+                                </div>
+                                <div class="paddingBurger">
+                                    <input type="radio" name="rdBurgerType" id="B3" value="2.00" required>Golden Crunchy Potato Burger
+                                    <input type="radio" name="rdBurgerType" id="B4" value="2.00" required>The Love Seed Beet Them All Burger
+                                </div>
+                                <div class="paddingBurger">
+                                    <input type="radio" name="rdBurgerType" id="B5" value="2.50" required>Golden Crunchy Bird's Nest Burger
+                                    <input type="radio" name="rdBurgerType" id="B6" value="2.50" required>Sweet and Tangy burger
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="trBurgerExtra" style="display:none">
+                        <td>
+                            <b> Choose extras as you'd like:</b><br />
+                            <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="V"> Vegan Cheese  +$1.00<br>
+                            <input type="checkbox" name="chkBurgerExtra" value="1.00" onchange="addExtraCharges(this)" id="GF"> Gluten Free bun  +$1.00
+                        </td>
+                    </tr>
 
-                <tr style="display:none" id="trCustomStyle">
-                <td colspan="2">
-                <div id="dvCustomItems">
-                Choose a style
+                    <tr style="display:none" id="trCustomStyle">
+                        <td colspan="2">
+                            <div id="dvCustomItems">
+                                Choose a style
 
-                <div>Required choose 1</div>
-                <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice(this)"><label>Wrap</label>
-                <input type="radio" name="typeOfItem" id="rdPizza" value="5.49" onchange="calculateBowlPrice(this)"><label>Pizza</label>
-                <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice(this)"><label>Bowl + $1.00</label>
-                </div>
-                </td>
-                </tr>
-                <tr style="display:none" id="trCustomExtra">
-                    <td colspan="2">
-                        <div class="fontBold">Would you like to add extra?</div>
-                        <div>Optional- Choose a maximum of 1 <span class="chooseMax1" id="chooseMax1">Maximum number of options exceeded</span></div>  
-                        <input type="checkbox" name="typeOfRice" id="Basmati" value="1.00" onchange="addExtraCharges(this)"><label>Add basmati + $1.00</label>
-                        <input type="checkbox" name="typeOfRice" id="Brown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
-                    </td>
-                </tr>
+                                <div>Required choose 1</div>
+                                <input type="radio" name="typeOfItem" id="rdWrap" value="5.49" onchange="calculateBowlPrice(this)"><label>Wrap</label>
+                                <input type="radio" name="typeOfItem" id="rdPizza" value="5.49" onchange="calculateBowlPrice(this)"><label>Pizza</label>
+                                <input type="radio" name="typeOfItem" id="rdBowl" value="1.00" onchange="calculateBowlPrice(this)"><label>Bowl + $1.00</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="display:none" id="trCustomExtra">
+                        <td colspan="2">
+                            <div class="fontBold">Would you like to add extra?</div>
+                            <div>Optional- Choose a maximum of 1 <span class="chooseMax1" id="chooseMax1">Maximum number of options exceeded</span></div>
+                            <input type="checkbox" name="typeOfRice" id="Basmati" value="1.00" onchange="addExtraCharges(this)"><label>Add basmati + $1.00</label>
+                            <input type="checkbox" name="typeOfRice" id="Brown" value="1.00" onchange="addExtraCharges(this)"><label>Add brown rice + $1.00</label><br />
+                        </td>
+                    </tr>
 
-                <tr id="trSpclInstructions">
-                <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
+                    <tr id="trSpclInstructions">
+                        <td colspan="2">  <label for="comment"><b> Special instructions: </b></label> </td>
 
-                </tr>
-                <tr id="txtSpcl">
-                <td colspan="2">
-                <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
-                </td>
-                </tr>
+                    </tr>
+                    <tr id="txtSpcl">
+                        <td colspan="2">
+                            <textarea placeholder="Dressing on the side?No pickle?Let us know here." rows="4" cols="70" id="txtNotes"></textarea>
+                        </td>
+                    </tr>
 
 
                 </table>
@@ -297,13 +297,13 @@
 
                 </span>
             </form>
-         
+
 
         </div>
 
-      
+
     </div>
-   
+
 
 
 
