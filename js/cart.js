@@ -355,8 +355,7 @@ function openPopUp(code) {
     else if (code == 'W1' || code == 'W2' || code == 'W3' || code == 'W4' || code == 'W5' || code == 'W6' || code == 'W7') {
         generateHtmlCustomizedItems(code);      
         renderExtraOptions(code);
-        var menuCategory = "Wraps"
-      
+        var menuCategory = "Wraps"      
         renderCompleteMealOptions(menuCategory);
     }
     else if (code == 'S1' || code == 'S2') {
@@ -395,6 +394,7 @@ function generateHtmlCustomizedItems(code)
 }
 
 function renderExtraOptions(code) {
+  
     if (menuCard[code] && menuCard[code].isCustomizable && menuCard[code].extraOptionAvailable) {
         var result = menuCard[code].extraOptions
         if (result) {
@@ -402,7 +402,7 @@ function renderExtraOptions(code) {
             firstRow.appendChild(document.createTextNode("Add any of your favorites:"))
             $("#tblPopUp tr:last").after(firstRow);
             firstRow.appendChild(document.createElement('hr'));
-         
+            firstRow.setAttribute('id', 'rowDynamic');
             result.forEach((item, rowNumber) => {
            
                 const newRow = document.createElement('tr');
@@ -463,6 +463,7 @@ function generateHtmlForBurgerPopUp(code)
 
 function renderCompleteMealOptions(menuCategory)
 {
+    
     if (menuSuggestions[menuCategory]) {
         var firstRow = document.createElement('div');
         firstRow.appendChild(document.createTextNode("Complete your meal options:"));
@@ -533,8 +534,10 @@ function hideModal(){
   
 }
 function clearPopUpValues() {
+   
     $("#myModal").find('input:radio, input:checkbox').prop('checked', false);
     document.getElementById('modalItemQty').value = 1;
+    $('#rowDynamic').remove();
     $("#tblPopUp").innerHTML = '';  
     $('#txtNotes').val('');
 }
