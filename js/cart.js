@@ -356,7 +356,7 @@ function openPopUp(code) {
         generateHtmlCustomizedItems(code);      
         renderExtraOptions(code);
         var menuCategory = "Wraps"
-        renderExtraOptions(code);
+      
         renderCompleteMealOptions(menuCategory);
     }
     else if (code == 'S1' || code == 'S2') {
