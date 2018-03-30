@@ -469,7 +469,7 @@ function renderCompleteMealOptions(menuCategory)
         firstRow.appendChild(document.createTextNode("Complete your meal options:"));
         $("#tblPopUp tr:last").after(firstRow);
         firstRow.appendChild(document.createElement('hr'));
-       
+        firstRow.setAttribute('id', 'rowDynamicDelete');
         menuSuggestions[menuCategory].forEach(function (menuItemCode, rowNumber) {
             if (menuCard[menuItemCode]) {
                
@@ -537,6 +537,7 @@ function clearPopUpValues() {
    
     $("#myModal").find('input:radio, input:checkbox').prop('checked', false);
     document.getElementById('modalItemQty').value = 1;
+    $('#rowDynamicDelete').remove();
     $('#rowDynamic').remove();
     $("#tblPopUp").innerHTML = '';  
     $('#txtNotes').val('');
