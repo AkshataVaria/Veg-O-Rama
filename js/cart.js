@@ -185,6 +185,12 @@ function addToCart(code) {
        var burgerCode2 = getSecondBurger()
        cartLine.productName ="*"+ menuCard[burgerCode1].productName +"*"+ menuCard[burgerCode2].productName;
        cartLine.price = menuCard[code].price * cartLine.qty;
+       if (sessionStorage.getItem("vegOramaCart")) {
+           // cart already exists in the memory
+           var cartValue = sessionStorage.getItem("vegOramaCart");
+           cartObj = JSON.parse(cartValue);
+           cartObj.cartLine.push(cartLine);
+           }
    }  
    else
    {
@@ -198,16 +204,17 @@ function addToCart(code) {
 				// cart already exists in the memory
 				var cartValue = sessionStorage.getItem( "vegOramaCart" );
 				cartObj = JSON.parse( cartValue );
-				var found = false;
-				for (i = 0; i < cartObj.cartLine.length && found == false; i++) {
-					if(cartObj.cartLine[i].code == code){
-                        cartObj.cartLine[i].qty = parseInt(document.getElementById('modalItemQty').value);
-                        cartObj.cartLine[i].notes = document.getElementById('txtNotes').value;
-                      
-						found = true; 
-					}
-				}
+                var found = false;
+                if (code != 'BG2') {
+                    for (i = 0; i < cartObj.cartLine.length && found == false; i++) {
+                        if (cartObj.cartLine[i].code == code) {
+                            cartObj.cartLine[i].qty = parseInt(document.getElementById('modalItemQty').value);
+                            cartObj.cartLine[i].notes = document.getElementById('txtNotes').value;
 
+                            found = true;
+                        }
+                    }
+                }
 				if(!found){
 					cartObj.cartLine.push(cartLine);
 				}
@@ -330,8 +337,8 @@ function deleteCartItem(rowId, code) {
 
     var jsonStr = JSON.stringify(cartObj)
     sessionStorage.setItem("vegOramaCart", jsonStr);
-    
-  
+
+
 }
 
 //Generate different HTML depending on the type of item
